@@ -59,8 +59,30 @@ const XIcon = ({ size = 24, className = "" }: { size?: number | string, classNam
     </svg>
 );
 
-// Patreon Icon
-const PatreonIcon = ({ size = 24, className = "" }: { size?: number | string, className?: string }) => (
+// Ko-fi Icon
+const KofiIcon = ({ size = 24, className = "" }: { size?: number | string, className?: string }) => (
+    <svg
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        xmlns="http://www.w3.org/2000/svg"
+        className={className}
+    >
+        <path d="M12 11h.01" />
+        <path d="M21 15c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v8z" />
+        <path d="M16 17v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2" />
+        <path d="M18 5v12" />
+        <path d="M6 10h.01" />
+    </svg>
+);
+
+// PayPal Icon
+const PaypalIcon = ({ size = 24, className = "" }: { size?: number | string, className?: string }) => (
     <svg
         width={size}
         height={size}
@@ -69,7 +91,7 @@ const PatreonIcon = ({ size = 24, className = "" }: { size?: number | string, cl
         xmlns="http://www.w3.org/2000/svg"
         className={className}
     >
-        <path d="M0 .6v23.4h3.8V.6H0zm15.6 0c-4.2 0-7.6 3.4-7.6 7.6s3.4 7.6 7.6 7.6 7.6-3.4 7.6-7.6S19.8.6 15.6.6z" />
+        <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 3.727a.78.78 0 0 1 .772-.656H14.03c4.717 0 7.375 2.27 6.848 6.576-.566 4.63-3.69 7.04-8.03 7.04H10.19c-.312 0-.583.21-.652.514l-2.462 4.136z" />
     </svg>
 );
 
@@ -150,16 +172,25 @@ const Contact: React.FC = () => {
 
                 {/* Support Links */}
                 <div className="flex flex-col items-center mb-12 w-full max-w-lg mx-auto">
-                    <h3 className="text-xs uppercase tracking-widest text-neutral-500 mb-4">Support</h3>
-                    <div className="flex justify-center">
+                    <h3 className="text-xs uppercase tracking-widest text-neutral-500 mb-6">Support</h3>
+                    <div className="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-12">
                         <a
-                            href="https://www.patreon.com/leniwsek"
+                            href="https://ko-fi.com/leniwsek"
                             target="_blank"
                             rel="noreferrer"
-                            className="text-lg font-light text-white hover:text-neutral-400 transition-colors flex items-center space-x-2"
+                            className="text-lg font-light text-white hover:text-neutral-400 transition-colors flex items-center space-x-2 p-2"
                         >
-                            <PatreonIcon size={16} />
-                            <span>Support</span>
+                            <KofiIcon size={20} />
+                            <span>Ko-fi</span>
+                        </a>
+                        <a
+                            href="https://www.paypal.me/leniwsek1"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-lg font-light text-white hover:text-neutral-400 transition-colors flex items-center space-x-2 p-2"
+                        >
+                            <PaypalIcon size={20} />
+                            <span>PayPal</span>
                         </a>
                     </div>
                 </div>
