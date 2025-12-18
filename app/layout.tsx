@@ -26,7 +26,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`scroll-smooth ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <body className="bg-[#050505] text-white selection:bg-white selection:text-black antialiased font-sans">
-        <div className="noise-overlay" />
         {children}
       </body>
     </html>
