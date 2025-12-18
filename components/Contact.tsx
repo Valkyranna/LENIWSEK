@@ -171,7 +171,7 @@ const Contact: React.FC = () => {
 
 
                 {/* Support Links */}
-                <div className="flex flex-col items-center mb-12 w-full max-w-lg mx-auto">
+                <div id="support" className="flex flex-col items-center mb-12 w-full max-w-lg mx-auto">
                     <h3 className="text-xs uppercase tracking-widest text-neutral-500 mb-6">Support</h3>
                     <div className="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-12">
                         <a

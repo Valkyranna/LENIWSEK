@@ -5,19 +5,7 @@ import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-// Patreon Icon
-const PatreonIcon = ({ size = 16, className = "" }: { size?: number | string, className?: string }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-  >
-    <path d="M0 .6v23.4h3.8V.6H0zm15.6 0c-4.2 0-7.6 3.4-7.6 7.6s3.4 7.6 7.6 7.6 7.6-3.4 7.6-7.6S19.8.6 15.6.6z" />
-  </svg>
-);
+
 
 const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -70,14 +58,12 @@ const Navigation: React.FC = () => {
               {link.name}
             </Link>
           ))}
-          <a
-            href="https://www.patreon.com/leniwsek"
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            href="/#support"
             className="text-sm font-light tracking-[0.2em] text-neutral-400 hover:text-white transition-colors duration-300"
           >
             SUPPORT
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Toggle - Only visible when menu is CLOSED */}
@@ -119,15 +105,13 @@ const Navigation: React.FC = () => {
                 {link.name}
               </Link>
             ))}
-            <a
-              href="https://www.patreon.com/leniwsek"
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              href="/#support"
               onClick={handleNavClick}
               className="text-4xl font-light tracking-widest text-neutral-400 hover:text-white transition-all duration-300 hover:scale-105"
             >
               SUPPORT
-            </a>
+            </Link>
           </div>
 
           <div className="absolute bottom-12 text-[10px] uppercase tracking-[0.4em] text-neutral-600">
