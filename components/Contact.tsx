@@ -74,23 +74,40 @@ const PatreonIcon = ({ size = 24, className = "" }: { size?: number | string, cl
 );
 
 const Contact: React.FC = () => {
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const [status, setStatus] = React.useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setStatus('loading');
+
         const formData = new FormData(e.currentTarget);
-        const name = formData.get('name');
-        const message = formData.get('message');
 
-        const subject = encodeURIComponent(`Message from ${name} via LENIWSEK.cz`);
-        const body = encodeURIComponent(`Name: ${name}\n\nMessage:\n${message}`);
+        try {
+            const response = await fetch("https://formspree.io/f/leniwsek@protonmail.com", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
 
-        window.location.href = `mailto:leniwsek@protonmail.com?subject=${subject}&body=${body}`;
+            if (response.ok) {
+                setStatus('success');
+                (e.target as HTMLFormElement).reset();
+                setTimeout(() => setStatus('idle'), 5000);
+            } else {
+                setStatus('error');
+            }
+        } catch (error) {
+            setStatus('error');
+        }
     };
 
     return (
         <footer className="flex flex-col items-center justify-center bg-black border-t border-neutral-900 relative py-16">
             <div className="max-w-4xl w-full mx-auto px-6 text-center">
 
-                {/* Minimalist mailto Form */}
+                {/* Minimalist Contact Form */}
                 <div className="mb-20 w-full max-w-sm mx-auto text-left">
                     <h3 className="text-[10px] uppercase tracking-[0.4em] text-neutral-600 mb-8 text-center">Send a Message</h3>
                     <form onSubmit={handleSubmit} className="space-y-6">
@@ -99,6 +116,15 @@ const Contact: React.FC = () => {
                                 type="text"
                                 name="name"
                                 placeholder="YOUR NAME"
+                                className="w-full bg-transparent border-b border-neutral-800 py-2 text-xs tracking-widest text-white focus:outline-none focus:border-white transition-colors placeholder:text-neutral-700"
+                                required
+                            />
+                        </div>
+                        <div className="relative group">
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="YOUR EMAIL"
                                 className="w-full bg-transparent border-b border-neutral-800 py-2 text-xs tracking-widest text-white focus:outline-none focus:border-white transition-colors placeholder:text-neutral-700"
                                 required
                             />
@@ -114,9 +140,10 @@ const Contact: React.FC = () => {
                         </div>
                         <button
                             type="submit"
-                            className="w-full pt-4 text-[10px] tracking-[0.5em] uppercase text-neutral-400 hover:text-white transition-colors"
+                            disabled={status === 'loading'}
+                            className="w-full pt-4 text-[10px] tracking-[0.5em] uppercase text-neutral-400 hover:text-white transition-colors disabled:opacity-30"
                         >
-                            OPEN EMAIL CLIENT
+                            {status === 'loading' ? 'SENDING...' : status === 'success' ? 'MESSAGE SENT' : status === 'error' ? 'TRY AGAIN' : 'SEND MESSAGE'}
                         </button>
                     </form>
                 </div>
