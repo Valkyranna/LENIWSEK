@@ -25,8 +25,8 @@ const About: React.FC = () => {
           {/* Content Column */}
           <div className="order-1 lg:order-2 space-y-10">
             <div className="flex items-center space-x-4">
-              <div className="h-[1px] w-12 bg-neutral-600"></div>
-              <span className="text-sm tracking-[0.3em] uppercase text-neutral-500">Biography</span>
+              <div className="h-[1px] w-12 bg-neutral-700"></div>
+              <h2 className="text-xs uppercase tracking-[0.5em] text-neutral-200 font-medium font-mono">Biography</h2>
             </div>
 
             <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-none">
