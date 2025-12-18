@@ -16,7 +16,7 @@ const About: React.FC = () => {
               <img
                 src="/LENIWSEK/Lenisideprofile.webp"
                 alt="LENIWSEK Portrait"
-                className="w-full h-full object-cover filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 transition-all duration-1000"
+                className="w-full h-full object-cover object-top filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 transition-all duration-1000"
               />
               <div className="absolute inset-0 bg-black/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-1000"></div>
 
