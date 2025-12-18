@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
           Exploring Wave, Witch House, Trance music and more!
         </p>
         <p className="text-sm md:text-lg text-neutral-300 font-light mt-4">
-          Prague // Czechia
+          Czechia
         </p>
       </div>
     </section>
