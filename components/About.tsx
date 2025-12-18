@@ -45,11 +45,11 @@ const About: React.FC = () => {
             <div className="pt-8 grid grid-cols-2 gap-8 border-t border-neutral-800">
               <div>
                 <h4 className="text-xs uppercase tracking-widest text-neutral-600 mb-2">Origin</h4>
-                <p className="text-white">Prague, Czech Republic</p>
+                <p className="text-white">Czechia</p>
               </div>
               <div>
-                <h4 className="text-xs uppercase tracking-widest text-neutral-600 mb-2">Focus</h4>
-                <p className="text-white">EDM, DnB</p>
+                <h4 className="text-xs uppercase tracking-widest text-neutral-600 mb-2">Genres</h4>
+                <p className="text-white leading-relaxed">Electronic with passion to Wave, Witch House, Trance, R&B, Hip Hop, Trap, Jazz</p>
               </div>
             </div>
           </div>
