@@ -82,7 +82,7 @@ const Music: React.FC = () => {
         ></iframe>
 
         {/* Custom Signal Console */}
-        <div className="mb-32">
+        <div className="mb-20">
           <div className="flex items-center mb-12 space-x-4">
             <div className="h-[1px] w-12 bg-neutral-700"></div>
             <h2 className="text-xs uppercase tracking-[0.5em] text-neutral-200 font-medium font-mono">LATEST TRACKS</h2>
