@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
 
       {/* Subtle Atmospheric Detail */}
       <div className="absolute bottom-10 right-10 text-[10px] text-white/5 font-mono tracking-[1em] select-none pointer-events-none uppercase hidden md:block">
-        REF_444
+        444
       </div>
     </section>
   );
