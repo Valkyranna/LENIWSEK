@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { BASE_PATH } from '@/lib/constants';
 
 const Hero: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -33,9 +34,9 @@ const Hero: React.FC = () => {
           className={`w-full h-full object-cover transition-all duration-1000 ease-in-out ${showColor ? 'grayscale-0 opacity-70' : 'grayscale opacity-50'
             }`}
         >
-          <source src="/LENIWSEK/banner_video_hq.mp4" type="video/mp4" />
-          <source src="/LENIWSEK/banner_video_hq.webm" type="video/webm" />
-          <source src="/LENIWSEK/banner_video.webm" type="video/webm" />
+          <source src={`${BASE_PATH}/banner_video_hq.mp4`} type="video/mp4" />
+          <source src={`${BASE_PATH}/banner_video_hq.webm`} type="video/webm" />
+          <source src={`${BASE_PATH}/banner_video.webm`} type="video/webm" />
           Your browser does not support the video tag.
         </video>
         {/* Darker gradient at bottom to blend with next section, lighter at top to show video */}

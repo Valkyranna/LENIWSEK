@@ -1,5 +1,7 @@
 import { TourDate, Release } from './types';
 
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export const TOUR_DATES: TourDate[] = [
   {
     id: '1',
@@ -58,7 +60,7 @@ export const RELEASES: Release[] = [
     title: "There's Always Time",
     type: 'Single',
     year: '2025',
-    coverUrl: '/LENIWSEK/a2662732270_10.webp',
+    coverUrl: `${BASE_PATH}/a2662732270_10.webp`,
     spotifyLink: '#',
     appleLink: '#'
   },
@@ -67,7 +69,7 @@ export const RELEASES: Release[] = [
     title: "Madhouse",
     type: 'Single',
     year: '2025',
-    coverUrl: '/LENIWSEK/madhouse.webp',
+    coverUrl: `${BASE_PATH}/madhouse.webp`,
     spotifyLink: 'https://soundcloud.com/leniwsek/madhouse',
     appleLink: 'https://soundcloud.com/leniwsek/madhouse'
   },
@@ -76,7 +78,7 @@ export const RELEASES: Release[] = [
     title: "There's Always Time",
     type: 'Single',
     year: '2025',
-    coverUrl: '/LENIWSEK/a2662732270_10.webp',
+    coverUrl: `${BASE_PATH}/a2662732270_10.webp`,
     spotifyLink: '#',
     appleLink: '#'
   },
@@ -85,7 +87,7 @@ export const RELEASES: Release[] = [
     title: "There's Always Time",
     type: 'Single',
     year: '2025',
-    coverUrl: '/LENIWSEK/a2662732270_10.webp',
+    coverUrl: `${BASE_PATH}/a2662732270_10.webp`,
     spotifyLink: '#',
     appleLink: '#'
   }
