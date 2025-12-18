@@ -26,9 +26,11 @@ const Music: React.FC = () => {
               scrolling="no"
               frameBorder="no"
               allow="autoplay"
+              loading="lazy"
               src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/leniwsek&color=%23333&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true&maxheight=300&show_artwork=true&sharing=false&download=false&show_playcount=false"
               title="SoundCloud Player"
               className="filter invert(1) hue-rotate(180deg) brightness(0.7) contrast(1.3) saturate(0.8)"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
             ></iframe>
           </div>
         </div>
