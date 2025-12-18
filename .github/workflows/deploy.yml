@@ -25,23 +25,21 @@ jobs:
         with:
           node-version: "20"
           cache: "npm"
-          cache-dependency-path: leniwsek-nextjs/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Install dependencies
         run: npm install
-        working-directory: leniwsek-nextjs
 
       - name: Build with Next.js
         run: npm run build
-        working-directory: leniwsek-nextjs
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./leniwsek-nextjs/out
+          path: ./out
 
   deploy:
     environment:
