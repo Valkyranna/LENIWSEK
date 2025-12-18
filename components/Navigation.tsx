@@ -7,15 +7,15 @@ import { usePathname } from 'next/navigation';
 
 // Patreon Icon
 const PatreonIcon = ({ size = 16, className = "" }: { size?: number | string, className?: string }) => (
-  <svg 
-    width={size} 
-    height={size} 
-    viewBox="0 0 24 24" 
-    fill="currentColor" 
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
   >
-    <path d="M0 .6v23.4h3.8V.6H0zm15.6 0c-4.2 0-7.6 3.4-7.6 7.6s3.4 7.6 7.6 7.6 7.6-3.4 7.6-7.6S19.8.6 15.6.6z"/>
+    <path d="M0 .6v23.4h3.8V.6H0zm15.6 0c-4.2 0-7.6 3.4-7.6 7.6s3.4 7.6 7.6 7.6 7.6-3.4 7.6-7.6S19.8.6 15.6.6z" />
   </svg>
 );
 
@@ -49,9 +49,9 @@ const Navigation: React.FC = () => {
   const isHome = pathname === '/';
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled || !isHome ? 'bg-black/90 backdrop-blur-md border-b border-white/10' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-[background-color,border-color,backdrop-filter] duration-300 border-b ${scrolled || !isHome ? 'bg-[#050505]/90 backdrop-blur-md border-white/10' : 'bg-transparent border-transparent'}`}>
       <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-        <Link 
+        <Link
           href="/"
           onClick={handleNavClick}
           className="text-2xl font-bold tracking-[0.3em] hover:text-white transition-colors text-neutral-300 z-50 mix-blend-difference"
@@ -70,8 +70,8 @@ const Navigation: React.FC = () => {
               {link.name}
             </Link>
           ))}
-          <a 
-            href="https://www.patreon.com/leniwsek" 
+          <a
+            href="https://www.patreon.com/leniwsek"
             target="_blank"
             rel="noreferrer"
             className="text-sm font-light tracking-[0.2em] text-neutral-400 hover:text-white transition-colors duration-300"
@@ -97,13 +97,13 @@ const Navigation: React.FC = () => {
           >
             <X size={32} />
           </button>
-          
+
           {/* Navigation Items */}
           <div className="flex flex-col items-center space-y-6">
             <Link
-               href="/"
-               onClick={handleNavClick}
-               className={`text-4xl font-light tracking-widest transition-all duration-300 ${pathname === '/' ? 'text-white scale-110' : 'text-neutral-400 hover:text-white hover:scale-105'}`}
+              href="/"
+              onClick={handleNavClick}
+              className={`text-4xl font-light tracking-widest transition-all duration-300 ${pathname === '/' ? 'text-white scale-110' : 'text-neutral-400 hover:text-white hover:scale-105'}`}
             >
               HOME
             </Link>
@@ -117,8 +117,8 @@ const Navigation: React.FC = () => {
                 {link.name}
               </Link>
             ))}
-            <a 
-              href="https://www.patreon.com/leniwsek" 
+            <a
+              href="https://www.patreon.com/leniwsek"
               target="_blank"
               rel="noreferrer"
               onClick={handleNavClick}
@@ -127,7 +127,7 @@ const Navigation: React.FC = () => {
               SUPPORT
             </a>
           </div>
-          
+
           {/* Bottom indicator */}
           <div className="absolute bottom-8 text-xs uppercase tracking-widest text-neutral-600">
             Swipe down to close
