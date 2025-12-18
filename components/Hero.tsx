@@ -44,8 +44,8 @@ const Hero: React.FC = () => {
         <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-6 select-none cursor-default">
           LENIWSEK
         </h1>
-        <p className="text-sm md:text-lg text-neutral-300 font-light">
-          Learning to create tunes with a dream to make music<br />
+        <p className="text-sm md:text-lg text-neutral-300 font-light max-w-2xl mx-auto">
+          Learning to make tunes with a dream to turn them into music<br />
           that makes people dance and captures the vibe.
         </p>
         <p className="text-sm md:text-lg text-neutral-300 font-light mt-4">
