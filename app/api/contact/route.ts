@@ -3,7 +3,8 @@ import { NextResponse } from 'next/server';
 export async function POST(req: Request) {
     try {
         const data = await req.json();
-        const formId = process.env.FORMSPREE_FORM_ID;
+        // Using your specific Formspree ID directly to ensure it works instantly
+        const formId = 'mbdrjknz';
 
         if (!formId) {
             throw new Error('Missing Formspree ID');
