@@ -131,7 +131,11 @@ const Contact: React.FC = () => {
 
                 {/* Minimalist Contact Form */}
                 <div className="mb-20 w-full max-w-sm mx-auto text-left">
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form
+                        action="https://formspree.io/f/leniwsek@protonmail.com"
+                        method="POST"
+                        className="space-y-6"
+                    >
                         <div className="relative group">
                             <input
                                 type="text"
@@ -161,10 +165,9 @@ const Contact: React.FC = () => {
                         </div>
                         <button
                             type="submit"
-                            disabled={status === 'loading'}
                             className="w-full pt-4 text-[10px] tracking-[0.5em] uppercase text-neutral-400 hover:text-white transition-colors disabled:opacity-30"
                         >
-                            {status === 'loading' ? 'SENDING...' : status === 'success' ? 'MESSAGE SENT' : status === 'error' ? 'TRY AGAIN' : 'SEND MESSAGE'}
+                            SEND MESSAGE
                         </button>
                     </form>
                 </div>
