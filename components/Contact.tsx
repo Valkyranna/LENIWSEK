@@ -95,142 +95,166 @@ const PaypalIcon = ({ size = 24, className = "" }: { size?: number | string, cla
     </svg>
 );
 
-const Contact: React.FC = () => {
-    const [status, setStatus] = React.useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+const [status, setStatus] = React.useState<'idle' | 'loading' | 'success' | 'error' | 'fallback'>('idle');
+const [formData, setFormData] = React.useState({ name: '', email: '', message: '' });
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setStatus('loading');
+const handleInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+};
 
-        const formData = new FormData(e.currentTarget);
-        const data = Object.fromEntries(formData.entries());
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('loading');
 
-        try {
-            const response = await fetch("/api/contact", {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-            });
+    try {
+        // Attempt Server-Side Send (Standard SMTP / Serverless)
+        const response = await fetch("/api/contact", {
+            method: "POST",
+            body: JSON.stringify(formData),
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+        });
 
-            if (response.ok) {
-                setStatus('success');
-                (e.target as HTMLFormElement).reset();
-                setTimeout(() => setStatus('idle'), 5000);
-            } else {
-                setStatus('error');
-            }
-        } catch (error) {
-            setStatus('error');
+        if (response.ok) {
+            setStatus('success');
+            setFormData({ name: '', email: '', message: '' });
+            setTimeout(() => setStatus('idle'), 5000);
+        } else {
+            // If server lacks credentials (SIM Card), switch to Manual Mode
+            setStatus('fallback');
         }
-    };
+    } catch (error) {
+        setStatus('fallback');
+    }
+};
 
-    return (
-        <footer className="flex flex-col items-center justify-center bg-black border-t border-neutral-900 relative py-16">
-            <div className="max-w-4xl w-full mx-auto px-6 text-center">
+const handleManualSend = () => {
+    // Construct a clean mailto link so the user can send it themselves
+    const subject = `Message from ${formData.name}`;
+    const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0A%0D%0A${formData.message}`;
+    window.location.href = `mailto:leniwsek@protonmail.com?subject=${encodeURIComponent(subject)}&body=${body}`; // Encoded just in case, but simple body works too
+};
 
-                {/* Minimalist Contact Form */}
-                <div className="mb-20 w-full max-w-sm mx-auto text-left">
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="relative group">
-                            <input
-                                type="text"
-                                name="name"
-                                placeholder="YOUR NAME"
-                                className="w-full bg-transparent border-b border-neutral-800 py-2 text-xs tracking-widest text-white focus:outline-none focus:border-white transition-colors placeholder:text-neutral-700"
-                                required
-                            />
-                        </div>
-                        <div className="relative group">
-                            <input
-                                type="email"
-                                name="email"
-                                placeholder="YOUR EMAIL"
-                                className="w-full bg-transparent border-b border-neutral-800 py-2 text-xs tracking-widest text-white focus:outline-none focus:border-white transition-colors placeholder:text-neutral-700"
-                                required
-                            />
-                        </div>
-                        <div className="relative group">
-                            <textarea
-                                name="message"
-                                placeholder="YOUR MESSAGE"
-                                rows={3}
-                                className="w-full bg-transparent border-b border-neutral-800 py-2 text-xs tracking-widest text-white focus:outline-none focus:border-white transition-colors resize-none placeholder:text-neutral-700"
-                                required
-                            ></textarea>
-                        </div>
+return (
+    <footer className="flex flex-col items-center justify-center bg-black border-t border-neutral-900 relative py-16">
+        <div className="max-w-4xl w-full mx-auto px-6 text-center">
+
+            {/* Minimalist Contact Form */}
+            <div className="mb-20 w-full max-w-sm mx-auto text-left">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="relative group">
+                        <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleInput}
+                            placeholder="YOUR NAME"
+                            className="w-full bg-transparent border-b border-neutral-800 py-2 text-xs tracking-widest text-white focus:outline-none focus:border-white transition-colors placeholder:text-neutral-700"
+                            required
+                        />
+                    </div>
+                    <div className="relative group">
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleInput}
+                            placeholder="YOUR EMAIL"
+                            className="w-full bg-transparent border-b border-neutral-800 py-2 text-xs tracking-widest text-white focus:outline-none focus:border-white transition-colors placeholder:text-neutral-700"
+                            required
+                        />
+                    </div>
+                    <div className="relative group">
+                        <textarea
+                            name="message"
+                            value={formData.message}
+                            onChange={handleInput}
+                            placeholder="YOUR MESSAGE"
+                            rows={3}
+                            className="w-full bg-transparent border-b border-neutral-800 py-2 text-xs tracking-widest text-white focus:outline-none focus:border-white transition-colors resize-none placeholder:text-neutral-700"
+                            required
+                        ></textarea>
+                    </div>
+
+                    {status === 'fallback' ? (
+                        <button
+                            type="button"
+                            onClick={handleManualSend}
+                            className="w-full pt-4 text-[10px] tracking-[0.5em] uppercase text-red-500 hover:text-red-400 transition-colors animate-pulse"
+                        >
+                            SERVER OFFLINE. CLICK TO SEND MANUALLY.
+                        </button>
+                    ) : (
                         <button
                             type="submit"
                             disabled={status === 'loading'}
                             className="w-full pt-4 text-[10px] tracking-[0.5em] uppercase text-neutral-400 hover:text-white transition-colors disabled:opacity-30"
                         >
-                            {status === 'loading' ? 'SENDING...' : status === 'success' ? 'MESSAGE SENT' : status === 'error' ? 'TRY AGAIN' : 'SEND MESSAGE'}
+                            {status === 'loading' ? 'TRANSMITTING...' : status === 'success' ? 'MESSAGE SENT' : 'SEND MESSAGE'}
                         </button>
-                    </form>
-                </div>
+                    )}
+                </form>
+            </div>
 
 
-                {/* Support Links */}
-                <div id="support" className="flex flex-col items-center mb-12 w-full max-w-lg mx-auto">
-                    <h3 className="text-xs uppercase tracking-widest text-neutral-500 mb-6">Support</h3>
-                    <div className="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-12">
-                        <a
-                            href="https://ko-fi.com/leniwsek"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-lg font-light text-white hover:text-neutral-400 transition-colors flex items-center space-x-2 p-2"
-                        >
-                            <KofiIcon size={20} />
-                            <span>Ko-fi</span>
-                        </a>
-                        <a
-                            href="https://www.paypal.me/leniwsek1"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-lg font-light text-white hover:text-neutral-400 transition-colors flex items-center space-x-2 p-2"
-                        >
-                            <PaypalIcon size={20} />
-                            <span>PayPal</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div className="flex flex-col items-center space-y-8">
-                    <div className="h-[1px] w-24 bg-neutral-800"></div>
-
-                    {/* Social Icons */}
-                    <div className="flex space-x-12">
-                        {[
-                            { icon: Instagram, href: "http://instagram.com/leniwsek", label: "Instagram" },
-                            { icon: XIcon, href: "https://x.com/leniwsek", label: "X" },
-                            { icon: BandcampIcon, href: "https://bandcamp.com/leniwsek", label: "Bandcamp" },
-                            { icon: SoundCloudIcon, href: "https://soundcloud.com/leniwsek", label: "SoundCloud" },
-                            { icon: AppleIcon, href: "https://music.apple.com/us/album/introduction-theres-always-time-single/1858365351?l=cs", label: "Apple Music", size: 32 }
-                        ].map((social, idx) => (
-                            <a
-                                key={idx}
-                                href={social.href}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="group relative flex items-center justify-center"
-                                aria-label={social.label}
-                                style={{ transform: social.label === 'Apple Music' ? 'translateY(-5px)' : 'none' }}
-                            >
-                                <div className="absolute -inset-4 bg-white/5 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                <social.icon size={social.size || 28} className="text-neutral-500 group-hover:text-white transition-colors duration-300 relative z-10 self-center" />
-                            </a>
-                        ))}
-                    </div>
+            {/* Support Links */}
+            <div id="support" className="flex flex-col items-center mb-12 w-full max-w-lg mx-auto">
+                <h3 className="text-xs uppercase tracking-widest text-neutral-500 mb-6">Support</h3>
+                <div className="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-12">
+                    <a
+                        href="https://ko-fi.com/leniwsek"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-lg font-light text-white hover:text-neutral-400 transition-colors flex items-center space-x-2 p-2"
+                    >
+                        <KofiIcon size={20} />
+                        <span>Ko-fi</span>
+                    </a>
+                    <a
+                        href="https://www.paypal.me/leniwsek1"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-lg font-light text-white hover:text-neutral-400 transition-colors flex items-center space-x-2 p-2"
+                    >
+                        <PaypalIcon size={20} />
+                        <span>PayPal</span>
+                    </a>
                 </div>
             </div>
 
-            <div className="absolute bottom-4 text-[10px] text-neutral-800 uppercase tracking-widest">
-                &copy; {new Date().getFullYear()} LENIWSEK
+            <div className="flex flex-col items-center space-y-8">
+                <div className="h-[1px] w-24 bg-neutral-800"></div>
+
+                {/* Social Icons */}
+                <div className="flex space-x-12">
+                    {[
+                        { icon: Instagram, href: "http://instagram.com/leniwsek", label: "Instagram" },
+                        { icon: XIcon, href: "https://x.com/leniwsek", label: "X" },
+                        { icon: BandcampIcon, href: "https://bandcamp.com/leniwsek", label: "Bandcamp" },
+                        { icon: SoundCloudIcon, href: "https://soundcloud.com/leniwsek", label: "SoundCloud" },
+                        { icon: AppleIcon, href: "https://music.apple.com/us/album/introduction-theres-always-time-single/1858365351?l=cs", label: "Apple Music", size: 32 }
+                    ].map((social, idx) => (
+                        <a
+                            key={idx}
+                            href={social.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="group relative flex items-center justify-center"
+                            aria-label={social.label}
+                            style={{ transform: social.label === 'Apple Music' ? 'translateY(-5px)' : 'none' }}
+                        >
+                            <div className="absolute -inset-4 bg-white/5 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <social.icon size={social.size || 28} className="text-neutral-500 group-hover:text-white transition-colors duration-300 relative z-10 self-center" />
+                        </a>
+                    ))}
+                </div>
             </div>
-        </footer>
-    );
+        </div>
+
+        <div className="absolute bottom-4 text-[10px] text-neutral-800 uppercase tracking-widest">
+            &copy; {new Date().getFullYear()} LENIWSEK
+        </div>
+    </footer>
+);
 };
 
 export default Contact;
