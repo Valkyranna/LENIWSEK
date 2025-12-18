@@ -4,7 +4,7 @@ export async function POST(req: Request) {
     try {
         const data = await req.json();
         // Using your specific Formspree ID directly to ensure it works instantly
-        const formId = 'mbdrjknz';
+        const formId = 'xbdrjark';
 
         if (!formId) {
             throw new Error('Missing Formspree ID');
