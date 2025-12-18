@@ -85,72 +85,106 @@ const Music: React.FC = () => {
         <div className="mb-32">
           <div className="flex items-center mb-12 space-x-4">
             <div className="h-[1px] w-12 bg-neutral-800"></div>
-            <h2 className="text-[10px] uppercase tracking-[0.5em] text-neutral-500 font-medium">Signal Console</h2>
+            <h2 className="text-[10px] uppercase tracking-[0.5em] text-neutral-500 font-medium">LATEST TRACKS</h2>
           </div>
 
-          <div className="max-w-3xl mx-auto bg-neutral-950/50 border border-neutral-900 p-8 md:p-12 relative overflow-hidden group hover:border-neutral-800 transition-colors duration-500">
-            {/* Ambient Background Detail */}
-            <div className="absolute top-0 right-0 p-4 opacity-10">
-              <Disc className={`w-32 h-32 text-white ${isPlaying ? 'animate-spin-slow' : ''}`} />
+          <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Main Player Console */}
+            <div className="lg:col-span-2 bg-neutral-950/50 border border-neutral-900 p-8 md:p-12 relative overflow-hidden group hover:border-neutral-800 transition-colors duration-500 rounded-sm">
+              {/* Ambient Background Detail */}
+              <div className="absolute top-0 right-0 p-4 opacity-10">
+                <Disc className={`w-32 h-32 text-white ${isPlaying ? 'animate-spin-slow' : ''}`} />
+              </div>
+
+              <div className="relative z-10 flex flex-col space-y-10">
+                {/* Status & Link */}
+                <div className="flex justify-between items-start">
+                  <div className="flex items-center space-x-3">
+                    <div className={`w-1.5 h-1.5 rounded-full ${isPlaying ? 'bg-white animate-pulse' : 'bg-neutral-800'}`}></div>
+                    <span className="text-[9px] uppercase tracking-[0.3em] text-neutral-400 font-mono">
+                      {isPlaying ? 'STRM_ACTIVE' : 'IDLE'}
+                    </span>
+                  </div>
+                  <a
+                    href="https://soundcloud.com/leniwsek"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-neutral-600 hover:text-white transition-colors duration-300"
+                  >
+                    <ExternalLink size={14} />
+                  </a>
+                </div>
+
+                {/* Track Info */}
+                <div className="min-h-[60px]">
+                  <h3 className="text-xl md:text-2xl font-light tracking-tight text-white mb-2 truncate">
+                    {currentTrack?.title || 'Loading Transmission...'}
+                  </h3>
+                  <p className="text-[10px] uppercase tracking-[0.4em] text-neutral-500">
+                    {currentTrack?.user?.username || 'LENIWSEK'}
+                  </p>
+                </div>
+
+                {/* Progress Signal Line */}
+                <div className="relative h-[2px] w-full bg-neutral-900 overflow-hidden">
+                  <div
+                    className="absolute top-0 left-0 h-full bg-white transition-all duration-300 ease-linear shadow-[0_0_10px_rgba(255,255,255,0.5)]"
+                    style={{ width: `${progress}%` }}
+                  ></div>
+                </div>
+
+                {/* Controls */}
+                <div className="flex items-center justify-start pt-4">
+                  <div className="flex items-center space-x-8">
+                    <button onClick={prevTrack} className="text-neutral-500 hover:text-white transition-colors p-2">
+                      <SkipBack size={18} />
+                    </button>
+                    <button
+                      onClick={togglePlay}
+                      className="w-14 h-14 border border-neutral-800 rounded-full flex items-center justify-center text-white hover:border-white hover:bg-white hover:text-black transition-all duration-500 group/play"
+                    >
+                      {isPlaying ? <Pause size={20} fill="currentColor" /> : <Play size={20} className="ml-1" fill="currentColor" />}
+                    </button>
+                    <button onClick={nextTrack} className="text-neutral-500 hover:text-white transition-colors p-2">
+                      <SkipForward size={18} />
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="relative z-10 flex flex-col space-y-10">
-              {/* Status & Link */}
-              <div className="flex justify-between items-start">
-                <div className="flex items-center space-x-3">
-                  <div className={`w-1.5 h-1.5 rounded-full ${isPlaying ? 'bg-white animate-pulse' : 'bg-neutral-800'}`}></div>
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-neutral-400 font-mono">
-                    {isPlaying ? 'STRM_ACTIVE' : 'IDLE'}
-                  </span>
-                </div>
-                <a
-                  href="https://soundcloud.com/leniwsek"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-neutral-600 hover:text-white transition-colors duration-300"
-                >
-                  <ExternalLink size={14} />
-                </a>
+            {/* Track List */}
+            <div className="bg-neutral-950/30 border border-neutral-900 rounded-sm overflow-hidden flex flex-col">
+              <div className="p-4 border-b border-neutral-900 bg-neutral-950/50">
+                <span className="text-[9px] uppercase tracking-[0.4em] text-neutral-600 font-mono">Transmission_Queue</span>
               </div>
-
-              {/* Track Info */}
-              <div className="min-h-[60px]">
-                <h3 className="text-xl md:text-2xl font-light tracking-tight text-white mb-2 truncate">
-                  {currentTrack?.title || 'Loading Transmission...'}
-                </h3>
-                <p className="text-[10px] uppercase tracking-[0.4em] text-neutral-500">
-                  {currentTrack?.user?.username || 'LENIWSEK'}
-                </p>
-              </div>
-
-              {/* Progress Signal Line */}
-              <div className="relative h-[2px] w-full bg-neutral-900 overflow-hidden">
-                <div
-                  className="absolute top-0 left-0 h-full bg-white transition-all duration-300 ease-linear shadow-[0_0_10px_rgba(255,255,255,0.5)]"
-                  style={{ width: `${progress}%` }}
-                ></div>
-              </div>
-
-              {/* Controls */}
-              <div className="flex items-center justify-between pt-4">
-                <div className="flex items-center space-x-8">
-                  <button onClick={prevTrack} className="text-neutral-500 hover:text-white transition-colors">
-                    <SkipBack size={18} />
-                  </button>
-                  <button
-                    onClick={togglePlay}
-                    className="w-14 h-14 border border-neutral-800 rounded-full flex items-center justify-center text-white hover:border-white hover:bg-white hover:text-black transition-all duration-500 group/play"
-                  >
-                    {isPlaying ? <Pause size={20} fill="currentColor" /> : <Play size={20} className="ml-1" fill="currentColor" />}
-                  </button>
-                  <button onClick={nextTrack} className="text-neutral-500 hover:text-white transition-colors">
-                    <SkipForward size={18} />
-                  </button>
-                </div>
-
-                <div className="hidden md:block text-[9px] font-mono text-neutral-700 uppercase tracking-widest">
-                  FLAC // 24-BIT // LOSSLESS SIGNAL
-                </div>
+              <div className="flex-1 overflow-y-auto max-h-[400px] scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-transparent">
+                {playlist.length > 0 ? (
+                  playlist.map((track, index) => (
+                    <button
+                      key={track.id || index}
+                      onClick={() => skipTo(index)}
+                      className={`w-full text-left p-4 border-b border-neutral-900/50 hover:bg-white/5 transition-all duration-300 group ${currentTrack?.id === track.id ? 'bg-white/5' : ''}`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className={`text-[10px] tracking-widest truncate pr-4 ${currentTrack?.id === track.id ? 'text-white' : 'text-neutral-500 group-hover:text-neutral-300'}`}>
+                          {track.title}
+                        </span>
+                        {currentTrack?.id === track.id && isPlaying && (
+                          <div className="flex space-x-0.5 items-end h-3">
+                            <div className="w-0.5 bg-white animate-[music-bar_0.8s_ease-in-out_infinite]"></div>
+                            <div className="w-0.5 bg-white animate-[music-bar_1.2s_ease-in-out_infinite]"></div>
+                            <div className="w-0.5 bg-white animate-[music-bar_1.0s_ease-in-out_infinite]"></div>
+                          </div>
+                        )}
+                      </div>
+                    </button>
+                  ))
+                ) : (
+                  <div className="p-8 text-center text-[10px] text-neutral-700 tracking-[0.3em] uppercase">
+                    Initialising...
+                  </div>
+                )}
               </div>
             </div>
           </div>
