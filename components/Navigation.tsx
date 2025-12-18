@@ -80,19 +80,28 @@ const Navigation: React.FC = () => {
           </a>
         </div>
 
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden z-50 text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile Toggle - Only visible when menu is CLOSED */}
+        {!isOpen && (
+          <button
+            className="md:hidden z-50 text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
+            onClick={() => setIsOpen(true)}
+          >
+            <Menu size={24} />
+          </button>
+        )}
 
         {/* Mobile Menu Overlay */}
-        <div className={`fixed inset-0 bg-black/95 backdrop-blur-lg flex flex-col items-center justify-center space-y-8 transition-all duration-500 ease-in-out md:hidden ${isOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full pointer-events-none'}`}>
+        <div className={`fixed inset-0 bg-black/95 backdrop-blur-lg flex flex-col items-center justify-center transition-all duration-500 ease-in-out md:hidden ${isOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full pointer-events-none'}`}>
+          {/* Close button - Only visible when menu is OPEN */}
+          <button
+            onClick={() => setIsOpen(false)}
+            className="absolute top-8 right-8 text-white hover:text-neutral-400 transition-colors p-2"
+          >
+            <X size={28} />
+          </button>
 
           {/* Navigation Items */}
-          <div className="flex flex-col items-center space-y-6">
+          <div className="flex flex-col items-center space-y-10">
             <Link
               href="/"
               onClick={handleNavClick}
@@ -121,8 +130,7 @@ const Navigation: React.FC = () => {
             </a>
           </div>
 
-          {/* Bottom indicator */}
-          <div className="absolute bottom-8 text-xs uppercase tracking-widest text-neutral-600">
+          <div className="absolute bottom-12 text-[10px] uppercase tracking-[0.4em] text-neutral-600">
             Swipe down to close
           </div>
         </div>
