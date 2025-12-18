@@ -1,67 +1,172 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useRef, useState } from 'react';
 import { RELEASES } from '@/lib/constants';
-import { Play, Disc } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, ExternalLink, Disc } from 'lucide-react';
+import Script from 'next/script';
 
 const Music: React.FC = () => {
-  return (
-    <section className="py-16 bg-[#050505] relative">
-      <div className="max-w-7xl mx-auto px-6">
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [widget, setWidget] = useState<any>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTrack, setCurrentTrack] = useState<any>(null);
+  const [progress, setProgress] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-        {/* Featured Release (SoundCloud Player) */}
-        <div className="mb-20">
-          <div className="flex items-center mb-8 space-x-4">
-            <div className="h-[1px] w-12 bg-neutral-700"></div>
-            <h2 className="text-2xl font-light tracking-[0.2em] text-neutral-200">LATEST TRACK</h2>
+  const handleScriptLoad = () => {
+    if (iframeRef.current && (window as any).SC) {
+      const scWidget = (window as any).SC.Widget(iframeRef.current);
+      setWidget(scWidget);
+
+      scWidget.bind((window as any).SC.Widget.Events.READY, () => {
+        setIsLoaded(true);
+        scWidget.getCurrentSound((sound: any) => {
+          setCurrentTrack(sound);
+        });
+      });
+
+      scWidget.bind((window as any).SC.Widget.Events.PLAY, () => setIsPlaying(true));
+      scWidget.bind((window as any).SC.Widget.Events.PAUSE, () => setIsPlaying(false));
+      scWidget.bind((window as any).SC.Widget.Events.FINISH, () => setIsPlaying(false));
+
+      scWidget.bind((window as any).SC.Widget.Events.PLAY_PROGRESS, (data: any) => {
+        setProgress(data.relativePosition * 100);
+      });
+    }
+  };
+
+  const togglePlay = () => {
+    if (widget) {
+      widget.toggle();
+    }
+  };
+
+  const nextTrack = () => widget?.next();
+  const prevTrack = () => widget?.prev();
+
+  return (
+    <section className="py-16 bg-[#050505] relative space-y-24">
+      <Script
+        src="https://w.soundcloud.com/player/api.js"
+        onLoad={handleScriptLoad}
+      />
+
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Hidden SoundCloud Player */}
+        <iframe
+          ref={iframeRef}
+          width="100%"
+          height="166"
+          scrolling="no"
+          frameBorder="no"
+          allow="autoplay"
+          src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/leniwsek&color=%23333&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"
+          className="hidden"
+          title="SoundCloud Engine"
+        ></iframe>
+
+        {/* Custom Signal Console */}
+        <div className="mb-32">
+          <div className="flex items-center mb-12 space-x-4">
+            <div className="h-[1px] w-12 bg-neutral-800"></div>
+            <h2 className="text-[10px] uppercase tracking-[0.5em] text-neutral-500 font-medium">Signal Console</h2>
           </div>
 
-          <div className="w-full max-w-3xl">
-            {/* 
-              SoundCloud Embed 
-              Replace the 'url' parameter in the src below with a specific track URL if needed.
-              Currently set to the artist profile which usually plays the latest track.
-            */}
-            <iframe
-              width="100%"
-              height="300"
-              scrolling="no"
-              frameBorder="no"
-              allow="autoplay"
-              loading="lazy"
-              src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/leniwsek&color=%23333&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true&maxheight=300&show_artwork=true&sharing=false&download=false&show_playcount=false"
-              title="SoundCloud Player"
-              className="filter invert(1) hue-rotate(180deg) brightness(0.7) contrast(1.3) saturate(0.8)"
-              sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-            ></iframe>
+          <div className="max-w-3xl mx-auto bg-neutral-950/50 border border-neutral-900 p-8 md:p-12 relative overflow-hidden group hover:border-neutral-800 transition-colors duration-500">
+            {/* Ambient Background Detail */}
+            <div className="absolute top-0 right-0 p-4 opacity-10">
+              <Disc className={`w-32 h-32 text-white ${isPlaying ? 'animate-spin-slow' : ''}`} />
+            </div>
+
+            <div className="relative z-10 flex flex-col space-y-10">
+              {/* Status & Link */}
+              <div className="flex justify-between items-start">
+                <div className="flex items-center space-x-3">
+                  <div className={`w-1.5 h-1.5 rounded-full ${isPlaying ? 'bg-white animate-pulse' : 'bg-neutral-800'}`}></div>
+                  <span className="text-[9px] uppercase tracking-[0.3em] text-neutral-400 font-mono">
+                    {isPlaying ? 'STRM_ACTIVE' : 'IDLE'}
+                  </span>
+                </div>
+                <a
+                  href="https://soundcloud.com/leniwsek"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-neutral-600 hover:text-white transition-colors duration-300"
+                >
+                  <ExternalLink size={14} />
+                </a>
+              </div>
+
+              {/* Track Info */}
+              <div className="min-h-[60px]">
+                <h3 className="text-xl md:text-2xl font-light tracking-tight text-white mb-2 truncate">
+                  {currentTrack?.title || 'Loading Transmission...'}
+                </h3>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-neutral-500">
+                  {currentTrack?.user?.username || 'LENIWSEK'}
+                </p>
+              </div>
+
+              {/* Progress Signal Line */}
+              <div className="relative h-[2px] w-full bg-neutral-900 overflow-hidden">
+                <div
+                  className="absolute top-0 left-0 h-full bg-white transition-all duration-300 ease-linear shadow-[0_0_10px_rgba(255,255,255,0.5)]"
+                  style={{ width: `${progress}%` }}
+                ></div>
+              </div>
+
+              {/* Controls */}
+              <div className="flex items-center justify-between pt-4">
+                <div className="flex items-center space-x-8">
+                  <button onClick={prevTrack} className="text-neutral-500 hover:text-white transition-colors">
+                    <SkipBack size={18} />
+                  </button>
+                  <button
+                    onClick={togglePlay}
+                    className="w-14 h-14 border border-neutral-800 rounded-full flex items-center justify-center text-white hover:border-white hover:bg-white hover:text-black transition-all duration-500 group/play"
+                  >
+                    {isPlaying ? <Pause size={20} fill="currentColor" /> : <Play size={20} className="ml-1" fill="currentColor" />}
+                  </button>
+                  <button onClick={nextTrack} className="text-neutral-500 hover:text-white transition-colors">
+                    <SkipForward size={18} />
+                  </button>
+                </div>
+
+                <div className="hidden md:block text-[9px] font-mono text-neutral-700 uppercase tracking-widest">
+                  FLAC // 24-BIT // LOSSLESS SIGNAL
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Release Grid */}
         <div className="flex items-center mb-12 space-x-4">
-          <div className="h-[1px] w-12 bg-neutral-700"></div>
-          <h2 className="text-xl font-light tracking-[0.2em] text-neutral-400">ARCHIVE</h2>
+          <div className="h-[1px] w-12 bg-neutral-800"></div>
+          <h2 className="text-[10px] uppercase tracking-[0.5em] text-neutral-500 font-medium">Archive</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {RELEASES.map((release) => (
             <a key={release.id} href={release.spotifyLink || release.appleLink} target="_blank" rel="noreferrer" className="group relative cursor-pointer block">
-              <div className="relative aspect-square overflow-hidden bg-neutral-900 border border-neutral-800 transition-all duration-300 group-hover:border-neutral-500">
+              <div className="relative aspect-square overflow-hidden bg-neutral-900 border border-neutral-800 transition-all duration-500 group-hover:border-neutral-600">
                 <img
                   src={release.coverUrl}
                   alt={release.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100 filter grayscale group-hover:grayscale-0"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100 filter grayscale"
                 />
 
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
-                  <div className="p-3 bg-white text-black rounded-full">
-                    <Play size={20} fill="currentColor" />
+                <div className="absolute inset-0 bg-[#050505]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                  <div className="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center text-white bg-black/40">
+                    <Play size={16} fill="white" className="ml-1" />
                   </div>
                 </div>
               </div>
 
-              <div className="mt-4">
-                <h3 className="text-lg font-medium text-neutral-200 tracking-wide group-hover:text-white transition-colors">{release.title}</h3>
-                <div className="flex justify-between items-center text-xs text-neutral-500 mt-1 uppercase tracking-wider">
+              <div className="mt-6 space-y-1">
+                <h3 className="text-sm font-medium text-neutral-200 tracking-wide group-hover:text-white transition-colors">{release.title}</h3>
+                <div className="flex justify-between items-center text-[9px] text-neutral-600 uppercase tracking-[0.2em] font-medium">
                   <span>{release.type}</span>
                   <span>{release.year}</span>
                 </div>
@@ -70,9 +175,9 @@ const Music: React.FC = () => {
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <a href="https://leniwsek.bandcamp.com/" target="_blank" rel="noreferrer" className="inline-block border border-neutral-700 px-8 py-3 text-sm tracking-[0.2em] text-neutral-400 hover:text-white hover:border-white transition-all duration-300 uppercase">
-            VIEW FULL ARCHIVE
+        <div className="mt-24 text-center">
+          <a href="https://leniwsek.bandcamp.com/" target="_blank" rel="noreferrer" className="inline-block border border-neutral-800 px-10 py-4 text-[10px] tracking-[0.4em] text-neutral-500 hover:text-white hover:border-white hover:bg-neutral-950 transition-all duration-500 uppercase font-medium">
+            View Full Transmission Archive
           </a>
         </div>
       </div>
