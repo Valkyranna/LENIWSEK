@@ -1,0 +1,39 @@
+import React from 'react';
+
+const Hero: React.FC = () => {
+  return (
+    <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Video with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="none"
+          className="w-full h-full object-cover opacity-50 grayscale"
+        >
+          <source src="/banner video.webm" type="video/webm" />
+          Your browser does not support the video tag.
+        </video>
+        {/* Darker gradient at bottom to blend with next section, lighter at top to show video */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-[#050505]"></div>
+      </div>
+
+      <div className="relative z-10 text-center px-4">
+        <h1 className="text-5xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white mb-6 select-none cursor-default">
+          LENIWSEK
+        </h1>
+        <p className="text-sm md:text-lg text-neutral-300 font-light">
+          Currently learning to create tunes<br />
+          Exploring Wave, Witch House, Trance music and more!
+        </p>
+        <p className="text-sm md:text-lg text-neutral-300 font-light mt-4">
+          Prague // Czechia
+        </p>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
