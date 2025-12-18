@@ -74,13 +74,56 @@ const PatreonIcon = ({ size = 24, className = "" }: { size?: number | string, cl
 );
 
 const Contact: React.FC = () => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const name = formData.get('name');
+        const message = formData.get('message');
+
+        const subject = encodeURIComponent(`Message from ${name} via LENIWSEK.cz`);
+        const body = encodeURIComponent(`Name: ${name}\n\nMessage:\n${message}`);
+
+        window.location.href = `mailto:leniwsek@protonmail.com?subject=${subject}&body=${body}`;
+    };
+
     return (
         <footer className="flex flex-col items-center justify-center bg-black border-t border-neutral-900 relative py-16">
             <div className="max-w-4xl w-full mx-auto px-6 text-center">
 
+                {/* Minimalist mailto Form */}
+                <div className="mb-20 w-full max-w-sm mx-auto text-left">
+                    <h3 className="text-[10px] uppercase tracking-[0.4em] text-neutral-600 mb-8 text-center">Send a Message</h3>
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        <div className="relative group">
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="YOUR NAME"
+                                className="w-full bg-transparent border-b border-neutral-800 py-2 text-xs tracking-widest text-white focus:outline-none focus:border-white transition-colors placeholder:text-neutral-700"
+                                required
+                            />
+                        </div>
+                        <div className="relative group">
+                            <textarea
+                                name="message"
+                                placeholder="YOUR MESSAGE"
+                                rows={3}
+                                className="w-full bg-transparent border-b border-neutral-800 py-2 text-xs tracking-widest text-white focus:outline-none focus:border-white transition-colors resize-none placeholder:text-neutral-700"
+                                required
+                            ></textarea>
+                        </div>
+                        <button
+                            type="submit"
+                            className="w-full pt-4 text-[10px] tracking-[0.5em] uppercase text-neutral-400 hover:text-white transition-colors"
+                        >
+                            OPEN EMAIL CLIENT
+                        </button>
+                    </form>
+                </div>
+
                 {/* Single Contact Box */}
                 <div className="flex flex-col items-center mb-12 w-full max-w-lg mx-auto">
-                    <h3 className="text-xs uppercase tracking-widest text-neutral-500 mb-4">Contact</h3>
+                    <h3 className="text-[10px] uppercase tracking-[0.4em] text-neutral-600 mb-4">Direct Email</h3>
                     <a href="mailto:leniwsek@protonmail.com" className="text-lg md:text-xl font-light text-white hover:text-neutral-400 transition-colors">
                         leniwsek@protonmail.com
                     </a>
