@@ -88,7 +88,7 @@ const Music: React.FC = () => {
             <h2 className="text-xs uppercase tracking-[0.5em] text-neutral-200 font-medium font-mono">LATEST TRACKS</h2>
           </div>
 
-          <div className="max-w-4xl mx-auto bg-neutral-950 border border-neutral-800 rounded-sm overflow-hidden flex flex-col md:flex-row shadow-2xl">
+          <div className="max-w-4xl mx-auto bg-neutral-950 border border-neutral-900/50 rounded-sm overflow-hidden flex flex-col md:flex-row shadow-2xl">
             {/* Left Side: Artwork & Main Info */}
             <div className="w-full md:w-5/12 p-6 md:p-8 border-b md:border-b-0 md:border-r border-neutral-900 bg-neutral-950/80 relative overflow-hidden group shrink-0">
               {/* Background Artwork (Blur) */}
@@ -158,8 +158,8 @@ const Music: React.FC = () => {
                     rel="noreferrer"
                     className="text-neutral-500 hover:text-white transition-colors flex items-center space-x-2"
                   >
-                    <span>SC</span>
-                    <ExternalLink size={10} />
+                    <span>SOUNDCLOUD</span>
+                    <ExternalLink size={12} />
                   </a>
                 </div>
 
