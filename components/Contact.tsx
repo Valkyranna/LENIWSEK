@@ -109,7 +109,6 @@ const Contact: React.FC = () => {
 
                 {/* Minimalist Contact Form */}
                 <div className="mb-20 w-full max-w-sm mx-auto text-left">
-                    <h3 className="text-[10px] uppercase tracking-[0.4em] text-neutral-600 mb-8 text-center">Send a Message</h3>
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="relative group">
                             <input
@@ -148,13 +147,6 @@ const Contact: React.FC = () => {
                     </form>
                 </div>
 
-                {/* Single Contact Box */}
-                <div className="flex flex-col items-center mb-12 w-full max-w-lg mx-auto">
-                    <h3 className="text-[10px] uppercase tracking-[0.4em] text-neutral-600 mb-4">Direct Email</h3>
-                    <a href="mailto:leniwsek@protonmail.com" className="text-lg md:text-xl font-light text-white hover:text-neutral-400 transition-colors">
-                        leniwsek@protonmail.com
-                    </a>
-                </div>
 
                 {/* Support Links */}
                 <div className="flex flex-col items-center mb-12 w-full max-w-lg mx-auto">
