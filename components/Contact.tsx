@@ -96,7 +96,7 @@ const PaypalIcon = ({ size = 24, className = "" }: { size?: number | string, cla
 );
 
 const Contact: React.FC = () => {
-    const [status, setStatus] = React.useState<'idle' | 'loading' | 'success' | 'error' | 'fallback'>('idle');
+    const [status, setStatus] = React.useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [formData, setFormData] = React.useState({ name: '', email: '', message: '' });
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -108,11 +108,13 @@ const Contact: React.FC = () => {
         setStatus('loading');
 
         try {
-            // Attempt Server-Side Send (Standard SMTP / Serverless)
             const response = await fetch("/api/contact", {
                 method: "POST",
                 body: JSON.stringify(formData),
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
             });
 
             if (response.ok) {
@@ -120,19 +122,11 @@ const Contact: React.FC = () => {
                 setFormData({ name: '', email: '', message: '' });
                 setTimeout(() => setStatus('idle'), 5000);
             } else {
-                // If server lacks credentials (SIM Card), switch to Manual Mode
-                setStatus('fallback');
+                setStatus('error');
             }
         } catch (error) {
-            setStatus('fallback');
+            setStatus('error');
         }
-    };
-
-    const handleManualSend = () => {
-        // Construct a clean mailto link so the user can send it themselves
-        const subject = `Message from ${formData.name}`;
-        const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0A%0D%0A${formData.message}`;
-        window.location.href = `mailto:leniwsek@protonmail.com?subject=${encodeURIComponent(subject)}&body=${body}`; // Encoded just in case, but simple body works too
     };
 
     return (
@@ -176,23 +170,13 @@ const Contact: React.FC = () => {
                             ></textarea>
                         </div>
 
-                        {status === 'fallback' ? (
-                            <button
-                                type="button"
-                                onClick={handleManualSend}
-                                className="w-full pt-4 text-[10px] tracking-[0.5em] uppercase text-red-500 hover:text-red-400 transition-colors animate-pulse"
-                            >
-                                SERVER OFFLINE. CLICK TO SEND MANUALLY.
-                            </button>
-                        ) : (
-                            <button
-                                type="submit"
-                                disabled={status === 'loading'}
-                                className="w-full pt-4 text-[10px] tracking-[0.5em] uppercase text-neutral-400 hover:text-white transition-colors disabled:opacity-30"
-                            >
-                                {status === 'loading' ? 'TRANSMITTING...' : status === 'success' ? 'MESSAGE SENT' : 'SEND MESSAGE'}
-                            </button>
-                        )}
+                        <button
+                            type="submit"
+                            disabled={status === 'loading'}
+                            className="w-full pt-4 text-[10px] tracking-[0.5em] uppercase text-neutral-400 hover:text-white transition-colors disabled:opacity-30"
+                        >
+                            {status === 'loading' ? 'SENDING...' : status === 'success' ? 'MESSAGE SENT' : status === 'error' ? 'TRY AGAIN' : 'SEND MESSAGE'}
+                        </button>
                     </form>
                 </div>
 
