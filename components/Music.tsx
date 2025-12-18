@@ -83,25 +83,25 @@ const Music: React.FC = () => {
 
         {/* Custom Signal Console */}
         <div className="mb-20">
-          <div className="flex items-center mb-12 space-x-4">
+          <div className="flex items-center mb-10 space-x-4">
             <div className="h-[1px] w-12 bg-neutral-700"></div>
             <h2 className="text-xs uppercase tracking-[0.5em] text-neutral-200 font-medium font-mono">LATEST TRACKS</h2>
           </div>
 
           <div className="max-w-4xl mx-auto bg-neutral-950 border border-neutral-800 rounded-sm overflow-hidden flex flex-col md:flex-row shadow-2xl">
             {/* Left Side: Artwork & Main Info */}
-            <div className="w-full md:w-2/5 p-8 md:p-10 border-b md:border-b-0 md:border-r border-neutral-900 bg-neutral-950/80 relative overflow-hidden group">
+            <div className="w-full md:w-5/12 p-6 md:p-8 border-b md:border-b-0 md:border-r border-neutral-900 bg-neutral-950/80 relative overflow-hidden group shrink-0">
               {/* Background Artwork (Blur) */}
               {currentTrack?.artwork_url && (
                 <div
-                  className="absolute inset-0 opacity-20 blur-3xl scale-150 transition-all duration-1000 group-hover:opacity-30"
+                  className="absolute inset-0 opacity-20 blur-3xl scale-125 transition-all duration-1000 group-hover:opacity-30"
                   style={{ backgroundImage: `url(${currentTrack.artwork_url.replace('-large', '-t500x500')})`, backgroundSize: 'cover' }}
                 ></div>
               )}
 
-              <div className="relative z-10 flex flex-col h-full space-y-8">
+              <div className="relative z-10 flex flex-col h-full space-y-6">
                 {/* Artwork Image */}
-                <div className="aspect-square w-full bg-neutral-900 border border-neutral-800 overflow-hidden rounded-sm shadow-xl">
+                <div className="aspect-square w-full max-w-[240px] mx-auto bg-neutral-900 border border-neutral-800 overflow-hidden rounded-sm shadow-xl">
                   {currentTrack?.artwork_url ? (
                     <img
                       src={currentTrack.artwork_url.replace('-large', '-t500x500')}
@@ -110,37 +110,37 @@ const Music: React.FC = () => {
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <Disc className={`w-16 h-16 text-neutral-800 ${isPlaying ? 'animate-spin-slow' : ''}`} />
+                      <Disc className={`w-12 h-12 text-neutral-800 ${isPlaying ? 'animate-spin-slow' : ''}`} />
                     </div>
                   )}
                 </div>
 
-                {/* Track Info */}
-                <div className="space-y-2">
+                {/* Track Info - Fixed height to prevent shifting */}
+                <div className="space-y-1 h-[72px] flex flex-col justify-end">
                   <div className="flex items-center space-x-2">
                     <div className={`w-2 h-2 rounded-full ${isPlaying ? 'bg-white animate-pulse shadow-[0_0_8px_white]' : 'bg-neutral-800'}`}></div>
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-white font-mono">
+                    <span className="text-[9px] uppercase tracking-[0.3em] text-white font-mono h-4">
                       {isPlaying ? 'ACTIVE' : 'IDLE'}
                     </span>
                   </div>
-                  <h3 className="text-2xl font-light tracking-tight text-white leading-tight">
+                  <h3 className="text-xl font-light tracking-tight text-white leading-tight line-clamp-2 overflow-hidden">
                     {currentTrack?.title || 'Initializing...'}
                   </h3>
                 </div>
 
                 {/* Main Controls */}
-                <div className="flex items-center space-x-6 pt-2">
+                <div className="flex items-center space-x-5 pt-1">
                   <button onClick={prevTrack} className="text-neutral-400 hover:text-white transition-colors p-2">
-                    <SkipBack size={20} />
+                    <SkipBack size={18} />
                   </button>
                   <button
                     onClick={togglePlay}
-                    className="w-16 h-16 border border-neutral-700 rounded-full flex items-center justify-center text-white hover:border-white hover:bg-white hover:text-black transition-all duration-500 shadow-xl"
+                    className="w-14 h-14 border border-neutral-700 rounded-full flex items-center justify-center text-white hover:border-white hover:bg-white hover:text-black transition-all duration-500 shadow-xl"
                   >
-                    {isPlaying ? <Pause size={24} fill="currentColor" /> : <Play size={24} className="ml-1" fill="currentColor" />}
+                    {isPlaying ? <Pause size={20} fill="currentColor" /> : <Play size={20} className="ml-1" fill="currentColor" />}
                   </button>
                   <button onClick={nextTrack} className="text-neutral-400 hover:text-white transition-colors p-2">
-                    <SkipForward size={20} />
+                    <SkipForward size={18} />
                   </button>
                 </div>
               </div>
@@ -149,7 +149,7 @@ const Music: React.FC = () => {
             {/* Right Side: Progress & Track List */}
             <div className="flex-1 flex flex-col bg-neutral-950/40">
               {/* Top: Progress & Branding */}
-              <div className="p-8 border-b border-neutral-900 space-y-6">
+              <div className="p-6 border-b border-neutral-900 space-y-4">
                 <div className="flex justify-between items-center text-[10px] uppercase tracking-[0.4em] text-neutral-300 font-mono font-medium">
                   <span>Track List</span>
                   <a
@@ -158,13 +158,13 @@ const Music: React.FC = () => {
                     rel="noreferrer"
                     className="text-neutral-500 hover:text-white transition-colors flex items-center space-x-2"
                   >
-                    <span>SOUNDCLOUD</span>
-                    <ExternalLink size={12} />
+                    <span>SC</span>
+                    <ExternalLink size={10} />
                   </a>
                 </div>
 
                 {/* Progress Signal Line */}
-                <div className="relative h-[3px] w-full bg-neutral-900 overflow-hidden rounded-full">
+                <div className="relative h-[2px] w-full bg-neutral-900 overflow-hidden rounded-full">
                   <div
                     className="absolute top-0 left-0 h-full bg-white transition-all duration-300 ease-linear shadow-[0_0_15px_rgba(255,255,255,0.8)]"
                     style={{ width: `${progress}%` }}
@@ -173,23 +173,23 @@ const Music: React.FC = () => {
               </div>
 
               {/* Scrollable List */}
-              <div className="flex-1 overflow-y-auto max-h-[460px] scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-transparent">
+              <div className="flex-1 overflow-y-auto max-h-[380px] scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-transparent">
                 {playlist.length > 0 ? (
                   playlist.map((track, index) => (
                     <button
                       key={track.id || index}
                       onClick={() => skipTo(index)}
-                      className={`w-full text-left px-8 py-5 border-b border-neutral-900/50 hover:bg-white/5 transition-all duration-300 group ${currentTrack?.id === track.id ? 'bg-white/5' : ''}`}
+                      className={`w-full text-left px-6 py-3.5 border-b border-neutral-900/50 hover:bg-white/5 transition-all duration-300 group ${currentTrack?.id === track.id ? 'bg-white/5' : ''}`}
                     >
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-4">
-                          <span className="text-[10px] font-mono text-neutral-700">{(index + 1).toString().padStart(2, '0')}</span>
-                          <span className={`text-xs tracking-[0.15em] font-medium truncate pr-4 ${currentTrack?.id === track.id ? 'text-white' : 'text-neutral-300 group-hover:text-white'}`}>
+                        <div className="flex items-center space-x-3 overflow-hidden">
+                          <span className="text-[10px] font-mono text-neutral-700 shrink-0">{(index + 1).toString().padStart(2, '0')}</span>
+                          <span className={`text-[11px] tracking-[0.12em] font-medium truncate ${currentTrack?.id === track.id ? 'text-white' : 'text-neutral-300 group-hover:text-white'}`}>
                             {track.title}
                           </span>
                         </div>
                         {currentTrack?.id === track.id && isPlaying && (
-                          <div className="flex space-x-1 items-end h-4 pb-1">
+                          <div className="flex space-x-1 items-end h-3.5 pb-0.5 shrink-0">
                             <div className="w-0.5 bg-white animate-[music-bar_0.8s_ease-in-out_infinite]"></div>
                             <div className="w-0.5 bg-white animate-[music-bar_1.2s_ease-in-out_infinite]"></div>
                             <div className="w-0.5 bg-white animate-[music-bar_1.0s_ease-in-out_infinite]"></div>
@@ -199,7 +199,7 @@ const Music: React.FC = () => {
                     </button>
                   ))
                 ) : (
-                  <div className="p-12 text-center text-[11px] text-neutral-500 tracking-[0.4em] uppercase animate-pulse">
+                  <div className="p-10 text-center text-[10px] text-neutral-500 tracking-[0.4em] uppercase animate-pulse">
                     Synchronizing...
                   </div>
                 )}
