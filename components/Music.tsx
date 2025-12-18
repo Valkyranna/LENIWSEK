@@ -244,8 +244,8 @@ const Music: React.FC = () => {
         </div>
 
         <div className="mt-24 text-center">
-          <a href="https://leniwsek.bandcamp.com/" target="_blank" rel="noreferrer" className="inline-block border border-neutral-800 px-10 py-4 text-[10px] tracking-[0.4em] text-neutral-500 hover:text-white hover:border-white hover:bg-neutral-950 transition-all duration-500 uppercase font-medium">
-            View Full Transmission Archive
+          <a href="https://leniwsek.bandcamp.com/" target="_blank" rel="noreferrer" className="inline-block border border-neutral-700 px-10 py-4 text-xs tracking-[0.4em] text-neutral-200 hover:text-white hover:border-white hover:bg-neutral-950 transition-all duration-500 uppercase font-medium font-mono">
+            View Archive
           </a>
         </div>
       </div>
