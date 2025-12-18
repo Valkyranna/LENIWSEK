@@ -90,13 +90,6 @@ const Navigation: React.FC = () => {
 
         {/* Mobile Menu Overlay */}
         <div className={`fixed inset-0 bg-black/95 backdrop-blur-lg flex flex-col items-center justify-center space-y-8 transition-all duration-500 ease-in-out md:hidden ${isOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full pointer-events-none'}`}>
-          {/* Close button at top */}
-          <button
-            onClick={handleNavClick}
-            className="absolute top-8 right-8 text-white hover:text-neutral-400 transition-colors"
-          >
-            <X size={32} />
-          </button>
 
           {/* Navigation Items */}
           <div className="flex flex-col items-center space-y-6">
