@@ -106,7 +106,7 @@ const Music: React.FC = () => {
                     <img
                       src={currentTrack.artwork_url.replace('-large', '-t500x500')}
                       alt={currentTrack.title}
-                      className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700"
+                      className="w-full h-full object-cover transition-all duration-700"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
@@ -221,7 +221,7 @@ const Music: React.FC = () => {
                 <img
                   src={release.coverUrl}
                   alt={release.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100 filter grayscale"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
 
                 {/* Hover Overlay */}
