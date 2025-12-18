@@ -14,7 +14,7 @@ const About: React.FC = () => {
             <div className="absolute inset-0 border border-neutral-800 translate-x-4 translate-y-4 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2"></div>
             <div className="relative z-10 overflow-hidden bg-neutral-900 group">
               <img
-                src="/LENIWSEK/Leni.webp"
+                src="/LENIWSEK/Lenisideprofile.webp"
                 alt="LENIWSEK Portrait"
                 className="w-full h-auto object-cover filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 transition-all duration-1000"
               />
