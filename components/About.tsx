@@ -10,19 +10,19 @@ const About: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* Image Column */}
-          <div className="relative order-2 lg:order-1 group max-w-md mx-auto lg:mx-0">
-            <div className="absolute inset-0 border border-neutral-800 translate-x-4 translate-y-4 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2"></div>
-            <div className="relative z-10 overflow-hidden bg-neutral-900 group aspect-square">
+          <div className="relative order-2 lg:order-1 group mx-auto lg:mx-0 h-[500px] lg:h-[600px] w-full flex justify-center lg:justify-start">
+            <div className="absolute inset-0 border border-neutral-800 translate-x-4 translate-y-4 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2 max-w-sm"></div>
+            <div className="relative z-10 overflow-hidden bg-neutral-900 group h-full w-auto max-w-full">
               <img
                 src="/LENIWSEK/Lenisideprofile.webp"
                 alt="LENIWSEK Portrait"
-                className="w-full h-full object-cover object-top filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 transition-all duration-1000"
+                className="h-full w-auto object-contain filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 transition-all duration-1000"
               />
               <div className="absolute inset-0 bg-black/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-1000"></div>
 
               {/* Subtle 444 Hover Overlay */}
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-10 transition-opacity duration-1000 pointer-events-none select-none">
-                <span className="text-white text-8xl md:text-9xl font-bold tracking-[0.1em] font-mono">444</span>
+                <span className="text-white text-7xl md:text-8xl font-bold tracking-[0.1em] font-mono">444</span>
               </div>
             </div>
           </div>
