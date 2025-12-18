@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   description: "Electronic music artist portfolio",
   icons: {
     icon: "/LENIWSEK/favicon.ico",
+    shortcut: "/LENIWSEK/favicon.ico",
+    apple: "/LENIWSEK/favicon.ico",
   },
 };
 
