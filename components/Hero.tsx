@@ -13,7 +13,7 @@ const Hero: React.FC = () => {
           preload="none"
           className="w-full h-full object-cover opacity-50 grayscale"
         >
-          <source src="/banner video.webm" type="video/webm" />
+          <source src="/LENIWSEK/banner_video.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
         {/* Darker gradient at bottom to blend with next section, lighter at top to show video */}

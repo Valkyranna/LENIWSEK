@@ -58,7 +58,7 @@ export const RELEASES: Release[] = [
     title: "There's Always Time",
     type: 'Single',
     year: '2025',
-    coverUrl: '/a2662732270_10.webp',
+    coverUrl: '/LENIWSEK/a2662732270_10.webp',
     spotifyLink: '#',
     appleLink: '#'
   },
@@ -67,7 +67,7 @@ export const RELEASES: Release[] = [
     title: "Madhouse",
     type: 'Single',
     year: '2025',
-    coverUrl: '/madhouse.webp',
+    coverUrl: '/LENIWSEK/madhouse.webp',
     spotifyLink: 'https://soundcloud.com/leniwsek/madhouse',
     appleLink: 'https://soundcloud.com/leniwsek/madhouse'
   },
