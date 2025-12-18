@@ -25,8 +25,8 @@ const Hero: React.FC = () => {
           LENIWSEK
         </h1>
         <p className="text-sm md:text-lg text-neutral-300 font-light">
-          Currently learning to create tunes<br />
-          Exploring Wave, Witch House, Trance music and more!
+          Learning to create tunes with a dream to make music<br />
+          that makes people dance and captures the vibe.
         </p>
         <p className="text-sm md:text-lg text-neutral-300 font-light mt-4">
           Czechia
