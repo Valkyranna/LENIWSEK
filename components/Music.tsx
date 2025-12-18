@@ -12,6 +12,7 @@ const Music: React.FC = () => {
   const [currentTrack, setCurrentTrack] = useState<any>(null);
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [playlist, setPlaylist] = useState<any[]>([]);
 
   const handleScriptLoad = () => {
     if (iframeRef.current && (window as any).SC) {
@@ -23,9 +24,18 @@ const Music: React.FC = () => {
         scWidget.getCurrentSound((sound: any) => {
           setCurrentTrack(sound);
         });
+        // Fetch full playlist
+        scWidget.getSounds((sounds: any[]) => {
+          setPlaylist(sounds);
+        });
       });
 
-      scWidget.bind((window as any).SC.Widget.Events.PLAY, () => setIsPlaying(true));
+      scWidget.bind((window as any).SC.Widget.Events.PLAY, () => {
+        setIsPlaying(true);
+        scWidget.getCurrentSound((sound: any) => {
+          setCurrentTrack(sound);
+        });
+      });
       scWidget.bind((window as any).SC.Widget.Events.PAUSE, () => setIsPlaying(false));
       scWidget.bind((window as any).SC.Widget.Events.FINISH, () => setIsPlaying(false));
 
@@ -43,6 +53,12 @@ const Music: React.FC = () => {
 
   const nextTrack = () => widget?.next();
   const prevTrack = () => widget?.prev();
+  const skipTo = (index: number) => {
+    if (widget) {
+      widget.skip(index);
+      widget.play();
+    }
+  };
 
   return (
     <section className="py-16 bg-[#050505] relative space-y-24">
