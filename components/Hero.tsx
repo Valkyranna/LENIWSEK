@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
       </div>
 
       <div className="relative z-10 text-center px-4">
-        <h1 className="text-5xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white mb-6 select-none cursor-default">
+        <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-6 select-none cursor-default">
           LENIWSEK
         </h1>
         <p className="text-sm md:text-lg text-neutral-300 font-light">
