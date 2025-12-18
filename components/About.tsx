@@ -19,6 +19,11 @@ const About: React.FC = () => {
                 className="w-full h-auto object-cover filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 transition-all duration-1000"
               />
               <div className="absolute inset-0 bg-black/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-1000"></div>
+
+              {/* Subtle 444 Hover Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-10 transition-opacity duration-1000 pointer-events-none select-none">
+                <span className="text-white text-8xl md:text-9xl font-bold tracking-[0.1em] font-mono">444</span>
+              </div>
             </div>
           </div>
 
