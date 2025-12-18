@@ -48,7 +48,7 @@ const Hero: React.FC = () => {
           LENIWSEK
         </h1>
         <p className="text-sm md:text-lg text-neutral-300 font-light max-w-2xl mx-auto">
-          Learning to make tunes with a dream to turn them into music people can vibe to
+          My dream is to create music to what can people resonate to, dance to and connects with their journeys
         </p>
         <p className="text-sm md:text-lg text-neutral-300 font-light mt-4">
           Czechia
