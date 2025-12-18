@@ -11,6 +11,9 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "LENISWEK | Electronic Music",
   description: "Electronic music artist portfolio",
+  icons: {
+    icon: "/LENIWSEK/favicon.ico",
+  },
 };
 
 export default function RootLayout({
