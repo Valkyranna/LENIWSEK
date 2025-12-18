@@ -7,7 +7,7 @@ const About: React.FC = () => {
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#111] to-transparent opacity-50 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-center">
 
           {/* Image Column */}
           <div className="relative order-2 lg:order-1 group max-w-md mx-auto lg:mx-0">
@@ -28,7 +28,7 @@ const About: React.FC = () => {
           </div>
 
           {/* Content Column */}
-          <div className="order-1 lg:order-2 space-y-10">
+          <div className="order-1 lg:order-2 space-y-10 relative z-20 lg:-ml-20">
             <div className="flex items-center space-x-4">
               <div className="h-[1px] w-12 bg-neutral-700"></div>
               <h2 className="text-xs uppercase tracking-[0.5em] text-neutral-200 font-medium font-mono">Biography</h2>
