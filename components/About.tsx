@@ -35,7 +35,7 @@ const About: React.FC = () => {
 
             <div className="space-y-6 text-lg font-light leading-relaxed text-neutral-400 max-w-xl">
               <p>
-                My name is Leni (Leniwsek). I’m deeply inspired by visionary incredible artist barnacle boi since May 2018. I have to say that wave music especially barnacle boi’s discography changed my life. My dream is to create resonant music that people dance to and connects with their journeys, and to collaborate with barnacle boi—his sound helped me find myself and start this music path.
+                My name is Leni. I’m deeply inspired by visionary incredible artist barnacle boi since May 2018. I have to say that wave music especially barnacle boi’s discography changed my life. My dream is to create resonant music that people dance to and connects with their journeys, and to collaborate with barnacle boi—his sound helped me find myself and start this music path.
               </p>
               <p>
                 Listen to barnacle boi's discography at <a href="https://soundcloud.com/barnacleboimusic" target="_blank" rel="noreferrer" className="text-white hover:text-neutral-300 border-b border-neutral-700 hover:border-white transition-colors">https://soundcloud.com/barnacleboimusic</a>
