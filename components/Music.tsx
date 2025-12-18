@@ -210,8 +210,8 @@ const Music: React.FC = () => {
 
         {/* Release Grid */}
         <div className="flex items-center mb-12 space-x-4">
-          <div className="h-[1px] w-12 bg-neutral-800"></div>
-          <h2 className="text-[10px] uppercase tracking-[0.5em] text-neutral-500 font-medium">Archive</h2>
+          <div className="h-[1px] w-12 bg-neutral-700"></div>
+          <h2 className="text-xs uppercase tracking-[0.5em] text-neutral-200 font-medium font-mono">Archive</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
