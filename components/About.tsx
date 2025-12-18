@@ -7,7 +7,7 @@ const About: React.FC = () => {
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#111] to-transparent opacity-50 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
           {/* Image Column */}
           <div className="relative order-2 lg:order-1 group max-w-md mx-auto lg:mx-0">
