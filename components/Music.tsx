@@ -90,7 +90,7 @@ const Music: React.FC = () => {
 
           <div className="max-w-4xl mx-auto bg-neutral-950 border border-neutral-900/50 rounded-sm overflow-hidden flex flex-col md:flex-row shadow-2xl">
             {/* Left Side: Artwork & Main Info */}
-            <div className="w-full md:w-[300px] p-6 border-b md:border-b-0 md:border-r border-neutral-900 bg-neutral-950/80 relative overflow-hidden group shrink-0">
+            <div className="w-full md:w-[280px] px-5 py-6 border-b md:border-b-0 md:border-r border-neutral-900 bg-neutral-950/80 relative overflow-hidden group shrink-0">
               {/* Background Artwork (Blur) */}
               {currentTrack?.artwork_url && (
                 <div
@@ -149,7 +149,7 @@ const Music: React.FC = () => {
             {/* Right Side: Progress & Track List */}
             <div className="flex-1 flex flex-col bg-neutral-950/40">
               {/* Top: Progress & Branding */}
-              <div className="p-6 border-b border-neutral-900 space-y-4">
+              <div className="px-5 py-6 border-b border-neutral-900 space-y-4">
                 <div className="flex justify-between items-center text-[10px] uppercase tracking-[0.4em] text-neutral-300 font-mono font-medium">
                   <span>Track List</span>
                   <a
@@ -179,7 +179,7 @@ const Music: React.FC = () => {
                     <button
                       key={track.id || index}
                       onClick={() => skipTo(index)}
-                      className={`w-full text-left px-6 py-3.5 border-b border-neutral-900/50 hover:bg-white/5 transition-all duration-300 group ${currentTrack?.id === track.id ? 'bg-white/5' : ''}`}
+                      className={`w-full text-left px-5 py-3.5 border-b border-neutral-900/50 hover:bg-white/5 transition-all duration-300 group ${currentTrack?.id === track.id ? 'bg-white/5' : ''}`}
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3 overflow-hidden">
