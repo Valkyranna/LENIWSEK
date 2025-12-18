@@ -1,8 +1,27 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 
 const Hero: React.FC = () => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const showColor = isHovered || isScrolled;
+
   return (
-    <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
+    <section
+      className="relative w-full h-screen flex items-center justify-center overflow-hidden"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {/* Background Video with Overlay */}
       <div className="absolute inset-0 z-0">
         <video
@@ -11,7 +30,8 @@ const Hero: React.FC = () => {
           muted
           playsInline
           preload="none"
-          className="w-full h-full object-cover opacity-50 grayscale"
+          className={`w-full h-full object-cover transition-all duration-1000 ease-in-out ${showColor ? 'grayscale-0 opacity-70' : 'grayscale opacity-50'
+            }`}
         >
           <source src="/LENIWSEK/banner_video.webm" type="video/webm" />
           Your browser does not support the video tag.
