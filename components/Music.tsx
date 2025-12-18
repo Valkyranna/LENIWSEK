@@ -90,7 +90,7 @@ const Music: React.FC = () => {
 
           <div className="max-w-4xl mx-auto bg-neutral-950 border border-neutral-900/50 rounded-sm overflow-hidden flex flex-col md:flex-row shadow-2xl">
             {/* Left Side: Artwork & Main Info */}
-            <div className="w-full md:w-5/12 p-6 md:p-8 border-b md:border-b-0 md:border-r border-neutral-900 bg-neutral-950/80 relative overflow-hidden group shrink-0">
+            <div className="w-full md:w-[300px] p-6 border-b md:border-b-0 md:border-r border-neutral-900 bg-neutral-950/80 relative overflow-hidden group shrink-0">
               {/* Background Artwork (Blur) */}
               {currentTrack?.artwork_url && (
                 <div
