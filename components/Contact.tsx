@@ -96,35 +96,6 @@ const PaypalIcon = ({ size = 24, className = "" }: { size?: number | string, cla
 );
 
 const Contact: React.FC = () => {
-    const [status, setStatus] = React.useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setStatus('loading');
-
-        const formData = new FormData(e.currentTarget);
-
-        try {
-            const response = await fetch("https://formspree.io/f/leniwsek@protonmail.com", {
-                method: "POST",
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-
-            if (response.ok) {
-                setStatus('success');
-                (e.target as HTMLFormElement).reset();
-                setTimeout(() => setStatus('idle'), 5000);
-            } else {
-                setStatus('error');
-            }
-        } catch (error) {
-            setStatus('error');
-        }
-    };
-
     return (
         <footer className="flex flex-col items-center justify-center bg-black border-t border-neutral-900 relative py-16">
             <div className="max-w-4xl w-full mx-auto px-6 text-center">
