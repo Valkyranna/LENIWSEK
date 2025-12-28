@@ -11,7 +11,7 @@ const spaceGrotesk = Space_Grotesk({
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export const metadata: Metadata = {
-  title: "LENISWEK | Electronic Music",
+  title: "LENIWSEK | Electronic Music",
   description: "Electronic music artist portfolio",
   icons: {
     icon: `${BASE_PATH}/favicon.ico`,
