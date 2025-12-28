@@ -14,9 +14,9 @@ export const metadata: Metadata = {
   title: "LENIWSEK | Electronic Music",
   description: "Electronic music artist portfolio",
   icons: {
-    icon: `${BASE_PATH}/favicon.ico`,
-    shortcut: `${BASE_PATH}/favicon.ico`,
-    apple: `${BASE_PATH}/favicon.ico`,
+    icon: `${BASE_PATH}/Leni.webp`,
+    shortcut: `${BASE_PATH}/Leni.webp`,
+    apple: `${BASE_PATH}/Leni.webp`,
   },
 };
 
