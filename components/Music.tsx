@@ -42,7 +42,9 @@ const Music: React.FC = () => {
     const onFinish = () => setIsPlaying(false);
     
     const onProgress = (data: any) => {
-      setProgress(data.relativePosition * 100);
+      // Throttle: only update if change is > 0.5% to reduce re-renders
+      const newProg = data.relativePosition * 100;
+      setProgress(prev => Math.abs(prev - newProg) > 0.5 ? newProg : prev);
     };
 
     // Bind events
