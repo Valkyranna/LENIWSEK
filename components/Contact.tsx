@@ -18,7 +18,21 @@ const AppleIcon = ({ size = 24, className = "" }: { size?: number | string, clas
 );
 
 // SoundCloud Icon
-const SoundCloudIcon = ({ size = 24, className = "" }: { size?: number | string, className?: string }) => (
+
+// Spotify Icon
+const SpotifyIcon = ({ size = 24, className = "" }: { size?: number | string, className?: string }) => (
+    <svg
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+        className={className}
+    >
+        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.49 17.3c-.22.36-.68.48-1.04.26-2.9-1.78-6.55-2.18-10.85-1.2-.41.09-.81-.17-.9-.58-.09-.41.17-.81.58-.9 4.7-1.07 8.78-.62 12.01 1.36.36.22.48.67.26 1.04-.04.02-.04.02-.06.02zm1.46-3.26c-.28.45-.87.59-1.32.32-3.32-2.04-8.38-2.63-12.31-1.44-.51.15-1.04-.14-1.19-.65s.14-1.04.65-1.19c4.51-1.37 10.08-.71 13.85 1.61.45.28.6.86.32 1.32l0 .03zm.12-3.41c-3.98-2.37-10.55-2.58-14.36-1.43-.61.18-1.25-.17-1.43-.78-.18-.61.17-1.25.78-1.43 4.38-1.33 11.64-1.08 16.23 1.64.55.33.73 1.04.4 1.59s-1.04.73-1.59.4l-.03.01z" />
+    </svg>
+);
+\nconst SoundCloudIcon = ({ size = 24, className = "" }: { size?: number | string, className?: string }) => (
     <svg
         width={size}
         height={size}
@@ -41,7 +55,7 @@ const BandcampIcon = ({ size = 24, className = "" }: { size?: number | string, c
         xmlns="http://www.w3.org/2000/svg"
         className={className}
     >
-        <path d="M0 19h8.73L24 5H15.27L0 19z" />
+        <path d="M0 18.75l7.437-13.5H24l-7.438 13.5H0z" />
     </svg>
 );
 
@@ -214,9 +228,9 @@ const Contact: React.FC = () => {
                         {[
                             { icon: Instagram, href: "http://instagram.com/leniwsek", label: "Instagram" },
                             { icon: XIcon, href: "https://x.com/leniwsek", label: "X" },
-                            { icon: BandcampIcon, href: "https://bandcamp.com/leniwsek", label: "Bandcamp" },
+                            { icon: BandcampIcon, href: "https://leniwsek.bandcamp.com", label: "Bandcamp" },
                             { icon: SoundCloudIcon, href: "https://soundcloud.com/leniwsek", label: "SoundCloud" },
-                            { icon: AppleIcon, href: "https://music.apple.com/us/album/introduction-theres-always-time-single/1858365351?l=cs", label: "Apple Music", size: 32 }
+                            { icon: SpotifyIcon, href: "https://open.spotify.com/artist/3CZcBvEHgbcm347Jxii9Pn", label: "Spotify" },\n                            { icon: AppleIcon, href: "https://music.apple.com/us/artist/leniwsek/1858297709", label: "Apple Music", size: 32 }
                         ].map((social, idx) => (
                             <a
                                 key={idx}
