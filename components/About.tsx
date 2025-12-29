@@ -3,7 +3,7 @@ import { BASE_PATH } from '@/lib/constants';
 
 const About: React.FC = () => {
   return (
-    <section className="bg-[#080808] text-neutral-300 py-16 relative overflow-hidden">
+    <section id="about" className="bg-[#080808] text-neutral-300 py-16 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#111] to-transparent opacity-50 pointer-events-none"></div>
 

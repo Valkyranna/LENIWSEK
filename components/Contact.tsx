@@ -145,7 +145,7 @@ const Contact: React.FC = () => {
     };
 
     return (
-        <footer className="flex flex-col items-center justify-center bg-black border-t border-neutral-900 relative py-16">
+        <footer id="contact" className="flex flex-col items-center justify-center bg-black border-t border-neutral-900 relative py-16">
             <div className="max-w-4xl w-full mx-auto px-6 text-center">
 
                 {/* Minimalist Contact Form */}

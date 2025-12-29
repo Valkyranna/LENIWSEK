@@ -91,7 +91,7 @@ const Music: React.FC = () => {
   };
 
   return (
-    <section className="py-16 bg-[#050505] relative space-y-24">
+    <section id="music" className="py-16 bg-[#050505] relative space-y-24">
       <Script
         src="https://w.soundcloud.com/player/api.js"
         onLoad={handleScriptLoad}

@@ -25,9 +25,9 @@ const Navigation: React.FC = () => {
   }, [isOpen]);
 
   const navLinks = [
-    { name: 'MUSIC', path: '/music' },
-    { name: 'ABOUT', path: '/about' },
-    { name: 'CONTACT', path: '/contact' },
+    { name: 'MUSIC', path: '/#music' },
+    { name: 'ABOUT', path: '/#about' },
+    { name: 'CONTACT', path: '/#contact' },
   ];
 
   const handleNavClick = () => {
@@ -59,7 +59,7 @@ const Navigation: React.FC = () => {
             </Link>
           ))}
           <Link
-            href="/#support"
+            href="/#contact"
             className="text-sm font-light tracking-[0.2em] text-neutral-400 hover:text-white transition-colors duration-300"
           >
             SUPPORT
@@ -106,7 +106,7 @@ const Navigation: React.FC = () => {
               </Link>
             ))}
             <Link
-              href="/#support"
+              href="/#contact"
               onClick={handleNavClick}
               className="text-4xl font-light tracking-widest text-neutral-400 hover:text-white transition-all duration-300 hover:scale-105"
             >
