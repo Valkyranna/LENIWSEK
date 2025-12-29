@@ -18,32 +18,55 @@ const Music: React.FC = () => {
     if (iframeRef.current && (window as any).SC) {
       const scWidget = (window as any).SC.Widget(iframeRef.current);
       setWidget(scWidget);
-
-      scWidget.bind((window as any).SC.Widget.Events.READY, () => {
-        setIsLoaded(true);
-        scWidget.getCurrentSound((sound: any) => {
-          setCurrentTrack(sound);
-        });
-        // Fetch full playlist
-        scWidget.getSounds((sounds: any[]) => {
-          setPlaylist(sounds);
-        });
-      });
-
-      scWidget.bind((window as any).SC.Widget.Events.PLAY, () => {
-        setIsPlaying(true);
-        scWidget.getCurrentSound((sound: any) => {
-          setCurrentTrack(sound);
-        });
-      });
-      scWidget.bind((window as any).SC.Widget.Events.PAUSE, () => setIsPlaying(false));
-      scWidget.bind((window as any).SC.Widget.Events.FINISH, () => setIsPlaying(false));
-
-      scWidget.bind((window as any).SC.Widget.Events.PLAY_PROGRESS, (data: any) => {
-        setProgress(data.relativePosition * 100);
-      });
     }
   };
+
+  useEffect(() => {
+    if (!widget || !(window as any).SC) return;
+
+    const events = (window as any).SC.Widget.Events;
+    
+    // Define handlers
+    const onReady = () => {
+      setIsLoaded(true);
+      widget.getCurrentSound((sound: any) => setCurrentTrack(sound));
+      widget.getSounds((sounds: any[]) => setPlaylist(sounds));
+    };
+
+    const onPlay = () => {
+      setIsPlaying(true);
+      widget.getCurrentSound((sound: any) => setCurrentTrack(sound));
+    };
+
+    const onPause = () => setIsPlaying(false);
+    const onFinish = () => setIsPlaying(false);
+    
+    const onProgress = (data: any) => {
+      setProgress(data.relativePosition * 100);
+    };
+
+    // Bind events
+    widget.bind(events.READY, onReady);
+    widget.bind(events.PLAY, onPlay);
+    widget.bind(events.PAUSE, onPause);
+    widget.bind(events.FINISH, onFinish);
+    widget.bind(events.PLAY_PROGRESS, onProgress);
+
+    // Initial check if ready (in case it loaded fast)
+    // Note: SC Widget doesn't have a simple synchronous 'isReady' property, 
+    // but the READY event should fire or have fired. 
+    
+    // Cleanup
+    return () => {
+      if (widget) {
+        widget.unbind(events.READY);
+        widget.unbind(events.PLAY);
+        widget.unbind(events.PAUSE);
+        widget.unbind(events.FINISH);
+        widget.unbind(events.PLAY_PROGRESS);
+      }
+    };
+  }, [widget]);
 
   const togglePlay = () => {
     if (widget) {
