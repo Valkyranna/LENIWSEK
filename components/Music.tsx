@@ -28,12 +28,14 @@ const Music: React.FC = () => {
     
     // Define handlers
     const onReady = () => {
+      if (!iframeRef.current) return;
       setIsLoaded(true);
       widget.getCurrentSound((sound: any) => setCurrentTrack(sound));
       widget.getSounds((sounds: any[]) => setPlaylist(sounds));
     };
 
     const onPlay = () => {
+      if (!iframeRef.current) return;
       setIsPlaying(true);
       widget.getCurrentSound((sound: any) => setCurrentTrack(sound));
     };
@@ -42,6 +44,7 @@ const Music: React.FC = () => {
     const onFinish = () => setIsPlaying(false);
     
     const onProgress = (data: any) => {
+      if (!iframeRef.current) return;
       // Throttle: only update if change is > 0.5% to reduce re-renders
       const newProg = data.relativePosition * 100;
       setProgress(prev => Math.abs(prev - newProg) > 0.5 ? newProg : prev);
@@ -60,12 +63,14 @@ const Music: React.FC = () => {
     
     // Cleanup
     return () => {
-      if (widget) {
-        widget.unbind(events.READY);
-        widget.unbind(events.PLAY);
-        widget.unbind(events.PAUSE);
-        widget.unbind(events.FINISH);
-        widget.unbind(events.PLAY_PROGRESS);
+      if (widget && (window as any).SC) {
+        try {
+          widget.unbind(events.READY);
+          widget.unbind(events.PLAY);
+          widget.unbind(events.PAUSE);
+          widget.unbind(events.FINISH);
+          widget.unbind(events.PLAY_PROGRESS);
+        } catch (e) {}
       }
     };
   }, [widget]);
