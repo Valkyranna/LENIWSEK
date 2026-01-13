@@ -1,7 +1,7 @@
 import React from 'react';
 import { BASE_PATH } from '@/lib/constants';
 
-const About: React.FC = () => {
+const About: React.FC = () => { // Updated bio content
   return (
     <section id="about" className="bg-[#080808] text-neutral-300 py-16 relative overflow-hidden">
       {/* Background decoration */}
