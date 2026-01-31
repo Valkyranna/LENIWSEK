@@ -51,11 +51,7 @@ const About: React.FC = () => { // Updated bio content
               </p>
             </div>
 
-            <div className="pt-8 grid grid-cols-2 gap-8 border-t border-neutral-800">
-              <div>
-                <h4 className="text-xs uppercase tracking-widest text-neutral-600 mb-2">Origin</h4>
-                <p className="text-white">Czechia</p>
-              </div>
+            <div className="pt-8 grid grid-cols-1 gap-8 border-t border-neutral-800">
               <div>
                 <h4 className="text-xs uppercase tracking-widest text-neutral-600 mb-2">Genres</h4>
                 <p className="text-white leading-relaxed">Electronic with passion to Wave, Witch House, Trance, R&B, Hip Hop, Trap, Jazz</p>
