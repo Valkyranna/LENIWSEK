@@ -44,7 +44,7 @@ const About: React.FC = () => { // Updated bio content
                 My name is Leni, I'm an aspiring producer who's deeply inspired by visionary incredible artist barnacle boi since May 2018. I have to say that wave music especially barnacle boi’s discography changed my life.
               </p>
               <p>
-                Although I am also heavily inspired a lot by artists such as: STM, Sidewalks and Skeletons, CASHFORGOLD, Klimeks, Øfdream, Trash Lord, MYSTXRIVL, Wevlth, FATE, Enjoii, Brothel, Skeler, deadwinter, Deadcrow and many more.
+                Although I am also heavily inspired a lot by artists such as: Klimeks, FATE, STM, Sidewalks and Skeletons, CASHFORGOLD, Øfdream, Trash Lord, MYSTXRIVL, Wevlth, Enjoii, Brothel, Skeler, deadwinter, Deadcrow and many more.
               </p>
               <p>
                 My dream is to create music that people can resonate with, relate to, dance to, and feel connected to throughout their journeys.
