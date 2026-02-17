@@ -56,15 +56,6 @@ export const TOUR_DATES: TourDate[] = [
 
 export const RELEASES: Release[] = [
   {
-    id: 'r1',
-    title: "There's Always Time",
-    type: 'Single',
-    year: '2025',
-    coverUrl: `${BASE_PATH}/a2662732270_10.webp`,
-    spotifyLink: '#',
-    appleLink: '#'
-  },
-  {
     id: 'r2',
     title: "Madhouse",
     type: 'Single',
@@ -72,24 +63,6 @@ export const RELEASES: Release[] = [
     coverUrl: `${BASE_PATH}/madhouse.webp`,
     spotifyLink: 'https://soundcloud.com/leniwsek/madhouse',
     appleLink: 'https://soundcloud.com/leniwsek/madhouse'
-  },
-  {
-    id: 'r3',
-    title: "There's Always Time",
-    type: 'Single',
-    year: '2025',
-    coverUrl: `${BASE_PATH}/a2662732270_10.webp`,
-    spotifyLink: '#',
-    appleLink: '#'
-  },
-  {
-    id: 'r4',
-    title: "There's Always Time",
-    type: 'Single',
-    year: '2025',
-    coverUrl: `${BASE_PATH}/a2662732270_10.webp`,
-    spotifyLink: '#',
-    appleLink: '#'
   }
 ];
 
