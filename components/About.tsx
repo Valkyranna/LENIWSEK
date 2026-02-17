@@ -41,10 +41,19 @@ const About: React.FC = () => { // Updated bio content
 
             <div className="space-y-6 text-lg font-light leading-relaxed text-neutral-400 max-w-xl">
               <p>
-                My name is Leni, I'm an aspiring producer who's deeply inspired by visionary incredible artist barnacle boi since May 2018. I have to say that wave music especially barnacle boi’s discography changed my life. My dream is to create music that people can resonate with, relate to, dance to, and feel connected to throughout their journeys.
+                My name is Leni, I'm an aspiring producer who's deeply inspired by visionary incredible artist barnacle boi since May 2018. I have to say that wave music especially barnacle boi’s discography changed my life.
               </p>
               <p>
-                Listen to barnacle boi's discography at <a href="https://soundcloud.com/barnacleboimusic" target="_blank" rel="noreferrer" className="text-white hover:text-neutral-300 border-b border-neutral-700 hover:border-white transition-colors">https://soundcloud.com/barnacleboimusic</a>
+                Although I am also heavily inspired a lot by artists such as: STM, Sidewalks and Skeletons, CASHFORGOLD, Klimeks, Øfdream, Trash Lord, MYSTXRIVL, Wevlth, FATE, Enjoii, Brothel, Skeler, deadwinter, Deadcrow and many more.
+              </p>
+              <p>
+                My dream is to create music that people can resonate with, relate to, dance to, and feel connected to throughout their journeys.
+              </p>
+              <p>
+                Barnacle boi's sound helped me find myself to start this music path.
+              </p>
+              <p>
+                Here we go.
               </p>
               <p>
                 Check out my Soundcloud <a href="https://soundcloud.com/leniwsek" target="_blank" rel="noreferrer" className="text-white hover:text-neutral-300 border-b border-neutral-700 hover:border-white transition-colors">https://soundcloud.com/leniwsek</a> for my little creations
