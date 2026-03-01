@@ -41,19 +41,17 @@ const About: React.FC = () => { // Updated bio content
 
             <div className="space-y-6 text-lg font-light leading-relaxed text-neutral-400 max-w-xl">
               <p>
-                My name is Leni, I'm an aspiring producer who's deeply inspired by visionary incredible artist barnacle boi since May 2018. I have to say that wave music especially barnacle boi’s discography changed my life.
+                My name is Leni, I'm an aspiring producer who's deeply inspired by visionary incredible artist barnacle boi since May 2018.
+                Being introduced to wave music thanks to barnacle boi I have to say that this music especially barnacle boi’s discography changed my life.
               </p>
               <p>
-                Although I am also heavily inspired a lot by artists such as: Klimeks, FATE, STM, Sidewalks and Skeletons, CASHFORGOLD, Øfdream, Trash Lord, MYSTXRIVL, Wevlth, Enjoii, Brothel, Skeler, deadwinter, Deadcrow and many more.
+                Although I am also heavily inspired a lot by artists such as: Klimeks, FATE, STM, Sidewalks and Skeletons, CASHFORGOLD, Sega Bodega, Øfdream, Trash Lord, MYSTXRIVL, Wevlth, Corbin, KFR, Enjoii, Brothel, Skeler, deadwinter, Deadcrow and many more.
               </p>
               <p>
-                My dream is to create music that people can resonate with, relate to, dance to, and feel connected to throughout their journeys.
+                My dream is to create music that resonates with people - music they can relate to, dance to and feel connected to throughout their journey.
               </p>
               <p>
-                Barnacle boi's sound helped me find myself to start this music path.
-              </p>
-              <p>
-                Here we go.
+                barnacle boi's sound helped me find myself to start this music path.
               </p>
               <p>
                 Check out my Soundcloud <a href="https://soundcloud.com/leniwsek" target="_blank" rel="noreferrer" className="text-white hover:text-neutral-300 border-b border-neutral-700 hover:border-white transition-colors">https://soundcloud.com/leniwsek</a> for my little creations
