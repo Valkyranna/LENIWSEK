@@ -41,17 +41,19 @@ const About: React.FC = () => { // Updated bio content
 
             <div className="space-y-6 text-lg font-light leading-relaxed text-neutral-400 max-w-xl">
               <p>
-                My name is Leni, I'm an aspiring producer who's deeply inspired by visionary incredible artist barnacle boi since May 2018.
-                Being introduced to wave music thanks to barnacle boi I have to say that this music especially barnacle boi’s discography changed my life.
+                Ciao! My name is Leni. I'm an aspiring music producer who has been deeply inspired by the visionary incredible artist barnacle boi since May 2018.
               </p>
               <p>
-                Although I am also heavily inspired a lot by artists such as: Klimeks, FATE, STM, Sidewalks and Skeletons, CASHFORGOLD, Sega Bodega, Øfdream, Trash Lord, MYSTXRIVL, Wevlth, Corbin, KFR, Enjoii, Brothel, Skeler, deadwinter, Deadcrow and many more.
+                Being introduced to wave music was a turning point for me. The genre - especially barnacle boi's discography had a profound impact on my life and continues to shape both my life and artistic direction.
               </p>
               <p>
-                My dream is to create music that resonates with people - music they can relate to, dance to and feel connected to throughout their journey.
+                Although I am also heavily inspired a lot by artists such as: Klimeks, FATE, STM, Sidewalks and Skeletons, SALEM, CASHFORGOLD, Sega Bodega, Øfdream, Trash Lord, MYSTXRIVL, Skeler, Æstral, Astral Planes, Wevlth, Darci, Corbin, FKA twigs, Allie X, KFR, Lorn, Enjoii, Brothel, deadwinter, Kareful, Deadcrow and many more.
               </p>
               <p>
-                barnacle boi's sound helped me find myself to start this music path.
+                My dream is to create music that resonates with people, music they can relate to, dance to and feel connected to throughout their journey.
+              </p>
+              <p>
+                - Outside of music, I enjoy collecting physical media—vinyl records, CDs and comics, particularly from DC (Batman, Catwoman, etc). Gaming is another passion of mine, with titles such as Resident Evil, Batman Arkham Trilogy, Call of Duty, Red Dead Redemption 2 among my favorites.
               </p>
               <p>
                 Check out my Soundcloud <a href="https://soundcloud.com/leniwsek" target="_blank" rel="noreferrer" className="text-white hover:text-neutral-300 border-b border-neutral-700 hover:border-white transition-colors">https://soundcloud.com/leniwsek</a> for my little creations
