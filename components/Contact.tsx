@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Instagram } from 'lucide-react';
+import { Instagram, Facebook, Youtube } from 'lucide-react';
 
 // Apple Icon
 const AppleIcon = ({ size = 24, className = "" }: { size?: number | string, className?: string }) => (
@@ -228,6 +228,8 @@ const Contact: React.FC = () => {
                     <div className="flex space-x-12">
                         {[
                             { icon: Instagram, href: "http://instagram.com/leniwsek", label: "Instagram" },
+                            { icon: Facebook, href: "https://facebook.com/leniwsek", label: "Facebook" },
+                            { icon: Youtube, href: "https://youtube.com/leniwsek", label: "YouTube" },
                             { icon: XIcon, href: "https://x.com/leniwsek", label: "X" },
                             { icon: BandcampIcon, href: "https://leniwsek.bandcamp.com", label: "Bandcamp" },
                             { icon: SoundCloudIcon, href: "https://soundcloud.com/leniwsek", label: "SoundCloud" },
