@@ -277,12 +277,6 @@ const Music: React.FC = () => {
                   decoding="async"
                 />
 
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-[#050505]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                  <div className="w-16 h-16 border border-white/20 rounded-full flex items-center justify-center text-white bg-black/40">
-                    <div className="text-[9px] tracking-[0.3em] font-mono uppercase">Read Story</div>
-                  </div>
-                </div>
               </div>
 
               <div className="mt-6 space-y-1">
