@@ -240,10 +240,15 @@ const Music: React.FC = () => {
           </div>
         </div>
 
-        {/* Release Grid */}
-        <div className="flex items-center mb-12 space-x-4">
-          <div className="h-[1px] w-12 bg-neutral-700"></div>
-          <h2 className="text-xs uppercase tracking-[0.5em] text-neutral-200 font-medium font-mono">Archive</h2>
+        {/* Catalogue Section */}
+        <div id="catalogue" className="pt-24">
+          <div className="flex items-center mb-6 space-x-4">
+            <div className="h-[1px] w-12 bg-neutral-700"></div>
+            <h2 className="text-xs uppercase tracking-[0.5em] text-neutral-200 font-medium font-mono">Music Catalogue</h2>
+          </div>
+          <p className="text-[10px] tracking-[0.3em] uppercase text-neutral-500 mb-12 ml-16">
+            Click any release below to explore the story and process behind the track.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -254,6 +259,16 @@ const Music: React.FC = () => {
               className="group relative cursor-pointer block"
             >
               <div className="relative aspect-square overflow-hidden bg-neutral-900 border border-neutral-800 transition-all duration-500 group-hover:border-neutral-600">
+                {/* Story Indicator Badge */}
+                {release.story && (
+                  <div className="absolute top-3 right-3 z-10 pointer-events-none">
+                    <div className="bg-black/60 backdrop-blur-md border border-white/10 px-2 py-1 flex items-center space-x-1.5 rounded-full">
+                      <div className="w-1 h-1 bg-white rounded-full animate-pulse shadow-[0_0_5px_white]"></div>
+                      <span className="text-[7px] tracking-[0.2em] uppercase text-white font-mono">Behind the Track</span>
+                    </div>
+                  </div>
+                )}
+
                 <img
                   src={release.coverUrl}
                   alt={release.title}
@@ -264,8 +279,8 @@ const Music: React.FC = () => {
 
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-[#050505]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                  <div className="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center text-white bg-black/40">
-                    <div className="text-[10px] tracking-widest font-mono uppercase">Read</div>
+                  <div className="w-16 h-16 border border-white/20 rounded-full flex items-center justify-center text-white bg-black/40">
+                    <div className="text-[9px] tracking-[0.3em] font-mono uppercase">Read Story</div>
                   </div>
                 </div>
               </div>
