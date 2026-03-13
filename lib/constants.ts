@@ -82,7 +82,7 @@ export const RELEASES: Release[] = [
     title: "Madhouse",
     year: "2025",
     type: "Single",
-    coverUrl: "https://f4.bcbits.com/img/a3920959247_10.jpg",
+    coverUrl: "https://f4.bcbits.com/img/a2255380785_10.jpg",
     spotifyLink: "https://leniwsek.bandcamp.com/track/madhouse",
     description: "Leniwsek's first song ever released, created shortly after getting a DAW in early December 2025.",
     story: "My debut release. I made this track just days after getting my first DAW in early December 2025. It represents the very beginning of my journey into music production.",
