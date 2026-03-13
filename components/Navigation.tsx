@@ -26,6 +26,7 @@ const Navigation: React.FC = () => {
 
   const navLinks = [
     { name: 'MUSIC', path: '/#music' },
+    { name: 'CATALOGUE', path: '/#music' },
     { name: 'ABOUT', path: '/#about' },
     { name: 'CONTACT', path: '/#contact' },
   ];

@@ -62,7 +62,10 @@ export const RELEASES: Release[] = [
     year: '2025',
     coverUrl: `${BASE_PATH}/madhouse.webp`,
     spotifyLink: 'https://soundcloud.com/leniwsek/madhouse',
-    appleLink: 'https://soundcloud.com/leniwsek/madhouse'
+    appleLink: 'https://soundcloud.com/leniwsek/madhouse',
+    description: "A dark, atmospheric exploration of sound and emotion.",
+    story: "Madhouse was born from a period of intense creative experimentation. It represents the chaotic yet beautiful nature of the mind during the late hours of the night.",
+    process: "The track was built using a combination of analog synths and manipulated field recordings. I focused on creating a deep, resonant bassline that acts as the heartbeat of the piece, layered with ethereal textures."
   }
 ];
 

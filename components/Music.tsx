@@ -2,8 +2,9 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { RELEASES } from '@/lib/constants';
-import { Play, Pause, SkipBack, SkipForward, ExternalLink, Disc } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, ExternalLink, Disc, X } from 'lucide-react';
 import Script from 'next/script';
+import { Release } from '@/lib/types';
 
 const Music: React.FC = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -13,6 +14,7 @@ const Music: React.FC = () => {
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [playlist, setPlaylist] = useState<any[]>([]);
+  const [selectedRelease, setSelectedRelease] = useState<Release | null>(null);
 
   const handleScriptLoad = () => {
     if (iframeRef.current && (window as any).SC) {
@@ -246,7 +248,11 @@ const Music: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {RELEASES.map((release) => (
-            <a key={release.id} href={release.spotifyLink || release.appleLink} target="_blank" rel="noreferrer" className="group relative cursor-pointer block">
+            <div 
+              key={release.id} 
+              onClick={() => setSelectedRelease(release)}
+              className="group relative cursor-pointer block"
+            >
               <div className="relative aspect-square overflow-hidden bg-neutral-900 border border-neutral-800 transition-all duration-500 group-hover:border-neutral-600">
                 <img
                   src={release.coverUrl}
@@ -259,7 +265,7 @@ const Music: React.FC = () => {
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-[#050505]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
                   <div className="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center text-white bg-black/40">
-                    <Play size={16} fill="white" className="ml-1" />
+                    <div className="text-[10px] tracking-widest font-mono uppercase">Read</div>
                   </div>
                 </div>
               </div>
@@ -271,7 +277,7 @@ const Music: React.FC = () => {
                   <span>{release.year}</span>
                 </div>
               </div>
-            </a>
+            </div>
           ))}
         </div>
 
@@ -281,6 +287,88 @@ const Music: React.FC = () => {
           </a>
         </div>
       </div>
+
+      {/* Catalogue Modal / Behind the Track */}
+      {selectedRelease && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 md:p-12">
+          <div 
+            className="absolute inset-0 bg-black/80 backdrop-blur-md"
+            onClick={() => setSelectedRelease(null)}
+          ></div>
+          
+          <div className="relative w-full max-w-5xl bg-neutral-950 border border-white/10 rounded-sm overflow-hidden flex flex-col md:flex-row shadow-2xl animate-in fade-in zoom-in duration-300">
+            {/* Close Button */}
+            <button 
+              onClick={() => setSelectedRelease(null)}
+              className="absolute top-4 right-4 z-20 text-white/50 hover:text-white transition-colors p-2"
+            >
+              <X size={24} />
+            </button>
+
+            {/* Left: Artwork & Links */}
+            <div className="w-full md:w-2/5 p-8 border-b md:border-b-0 md:border-r border-white/5 bg-neutral-900/30 flex flex-col">
+              <div className="aspect-square w-full rounded-sm overflow-hidden border border-white/10 shadow-2xl mb-8 group">
+                <img 
+                  src={selectedRelease.coverUrl} 
+                  alt={selectedRelease.title} 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+              </div>
+              
+              <div className="mt-auto space-y-4">
+                <div className="flex items-center justify-between text-[10px] tracking-[0.3em] uppercase text-neutral-500 font-mono">
+                  <span>{selectedRelease.type}</span>
+                  <span>{selectedRelease.year}</span>
+                </div>
+                <h2 className="text-3xl font-light tracking-tight text-white">{selectedRelease.title}</h2>
+                <div className="flex flex-col space-y-3 pt-4">
+                  <a 
+                    href={selectedRelease.spotifyLink} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="flex items-center justify-between px-4 py-3 border border-white/10 bg-white/5 text-xs tracking-widest text-neutral-300 hover:text-white hover:border-white/40 transition-all"
+                  >
+                    <span>SOUNDCLOUD</span>
+                    <ExternalLink size={14} />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Content */}
+            <div className="flex-1 p-8 md:p-12 overflow-y-auto max-h-[80vh] md:max-h-[600px] scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-transparent">
+              <div className="space-y-12">
+                {selectedRelease.description && (
+                  <section className="space-y-4">
+                    <h3 className="text-[10px] tracking-[0.4em] uppercase text-neutral-500 font-mono border-b border-white/5 pb-2">Overview</h3>
+                    <p className="text-lg font-light text-neutral-200 leading-relaxed italic">
+                      "{selectedRelease.description}"
+                    </p>
+                  </section>
+                )}
+
+                {selectedRelease.story && (
+                  <section className="space-y-4">
+                    <h3 className="text-[10px] tracking-[0.4em] uppercase text-neutral-500 font-mono border-b border-white/5 pb-2">The Story</h3>
+                    <p className="text-sm font-light text-neutral-400 leading-relaxed">
+                      {selectedRelease.story}
+                    </p>
+                  </section>
+                )}
+
+                {selectedRelease.process && (
+                  <section className="space-y-4">
+                    <h3 className="text-[10px] tracking-[0.4em] uppercase text-neutral-500 font-mono border-b border-white/5 pb-2">The Process</h3>
+                    <p className="text-sm font-light text-neutral-400 leading-relaxed">
+                      {selectedRelease.process}
+                    </p>
+                  </section>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

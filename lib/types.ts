@@ -18,6 +18,9 @@ export interface Release {
   coverUrl: string;
   spotifyLink: string;
   appleLink: string;
+  description?: string;
+  story?: string;
+  process?: string;
 }
 
 export interface SocialLink {
