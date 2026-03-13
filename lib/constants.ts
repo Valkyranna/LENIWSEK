@@ -56,16 +56,37 @@ export const TOUR_DATES: TourDate[] = [
 
 export const RELEASES: Release[] = [
   {
-    id: 'r2',
+    id: 'mystique',
+    title: "Mystique",
+    year: "2026",
+    type: "Single",
+    coverUrl: "https://f4.bcbits.com/img/a0558301594_10.jpg",
+    spotifyLink: "https://leniwsek.bandcamp.com/track/mystique",
+    description: "Inspired by Klimeks with a wave/trap vibe. A deep dive into atmospheric textures and driving rhythms.",
+    story: "This track was an exploration of the wave genre, heavily influenced by Klimeks' signature sound. It matches a wave/trap vibe that I've been wanting to explore for a while.",
+    process: "Created with a focus on atmospheric depth, layering ethereal pads with sharp, energetic trap percussion. It's a track that didn't make it onto my future EP but stands strong as a single."
+  },
+  {
+    id: 'valkyrie',
+    title: "Valkyrie",
+    year: "2026",
+    type: "Single",
+    coverUrl: "https://f4.bcbits.com/img/a2549966444_10.jpg",
+    spotifyLink: "https://leniwsek.bandcamp.com/track/valkyrie",
+    description: "Inspired by Game of Thrones and dedicated to a friend. Cinematic wave music with powerful emotional undertones.",
+    story: "Heavily inspired by the epic atmosphere of Game of Thrones. I dedicated this track to a very close friend of mine, aiming to capture a sense of strength and destiny.",
+    process: "The production involved blending cinematic orchestral elements like strings and brass with deep, resonant wave filters. It was about finding that balance between epic scale and intimate emotion."
+  },
+  {
+    id: 'madhouse',
     title: "Madhouse",
-    type: 'Single',
-    year: '2025',
-    coverUrl: `${BASE_PATH}/madhouse.webp`,
-    spotifyLink: 'https://soundcloud.com/leniwsek/madhouse',
-    appleLink: 'https://soundcloud.com/leniwsek/madhouse',
-    description: "A dark, atmospheric exploration of sound and emotion.",
-    story: "Madhouse was born from a period of intense creative experimentation. It represents the chaotic yet beautiful nature of the mind during the late hours of the night.",
-    process: "The track was built using a combination of analog synths and manipulated field recordings. I focused on creating a deep, resonant bassline that acts as the heartbeat of the piece, layered with ethereal textures."
+    year: "2025",
+    type: "Single",
+    coverUrl: "https://f4.bcbits.com/img/a3920959247_10.jpg",
+    spotifyLink: "https://leniwsek.bandcamp.com/track/madhouse",
+    description: "Leniwsek's first song ever released, created shortly after getting a DAW in early December 2025.",
+    story: "My debut release. I made this track just days after getting my first DAW in early December 2025. It represents the very beginning of my journey into music production.",
+    process: "A raw and experimental track where I was learning the ropes of my DAW. It's built around a haunting vocal sample and layered with experimental sound design that sets the tone for my project."
   }
 ];
 

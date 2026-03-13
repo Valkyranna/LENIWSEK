@@ -16,8 +16,8 @@ export interface Release {
   type: 'Single' | 'EP' | 'Album';
   year: string;
   coverUrl: string;
-  spotifyLink: string;
-  appleLink: string;
+  spotifyLink?: string;
+  appleLink?: string;
   description?: string;
   story?: string;
   process?: string;
