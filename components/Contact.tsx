@@ -96,6 +96,34 @@ const KofiIcon = ({ size = 24, className = "" }: { size?: number | string, class
     </svg>
 );
 
+// Amazon Icon
+const AmazonIcon = ({ size = 24, className = "" }: { size?: number | string, className?: string }) => (
+    <svg
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+        className={className}
+    >
+        <path d="M15.012 13.518c.026.155.155.155.33.155h3.047c.181 0 .285-.155.337-.363.052-.259.052-.466.052-1.036 0-3.37-3.655-4.407-3.655-4.407S11.455 7.042 11.455 10.41c0 2.257 1.452 3.868 3.557 3.108zm-9.332 5.34c-1.218 0-1.892-.622-1.892-1.633 0-1.088.751-1.685 2.15-1.685 1.14 0 2.046.285 2.046.285s-.026 1.452-.052 1.633c-.026.233-.285.492-.518.544a4.34 4.34 0 0 1-1.734.855zm8.136-2.177c0 .648-.389 1.115-.907 1.425a4.896 4.896 0 0 1-2.903.623 4.636 4.636 0 0 1-3.238-.855 3.02 3.02 0 0 1-1.166-2.515c0-1.685.959-2.592 2.747-2.903l1.841-.337c1.399-.234 1.451-.57.181-.7-.803-.078-1.581.052-2.385.285-.181.052-.337-.052-.363-.259l-.493-2.126c-.026-.181.052-.337.259-.388a10.6 10.6 0 0 1 3.524-.493c1.789 0 3.033.441 3.759 1.27.7.804.855 1.633.855 2.955l.026 3.033v1.14c0 1.996 1.348 2.307 1.348 2.307.181.052.233.182.026.337-1.14.778-2.333.778-2.333.778-.207 0-.31-.155-.31-.389V16.68zm9.539 3.448c-4.251 3.059-11.846 3.655-16.719 1.84l-.44-.207c-.156-.078-.156-.259.052-.311.596-.13 1.814-.311 2.358-.337.207-.026.311.13.259.285-.31.855-1.555 1.84-1.996 2.15l-.233.156c-.155.104-.207.129 0 .155 3.163.519 8.165.182 11.225-1.918.493-.337.985-.726.855-1.426-.104-.57-.674-.648-.674-.648-.182-.026-.337.13-.182.259.855.778.855 1.244.311 1.607zM24 10.229c0-1.01-.259-1.348-.751-1.348-.156 0-.311.026-.519.078C21.455 9.348 21.04 10.592 21.04 13.57c0 2.2.337 3.654.778 3.654.466 0 .803-.492.803-1.088v-5.907z" />
+    </svg>
+);
+
+// Tidal Icon
+const TidalIcon = ({ size = 24, className = "" }: { size?: number | string, className?: string }) => (
+    <svg
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+        className={className}
+    >
+        <path d="M12.012 7.248L8.008 11.252l4.004 4.004 4.004-4.004-4.004-4.004zm0-7.248L8.008 4.004l4.004 4.004 4.004-4.004L12.012 0zm-8.008 8.008L0 12.012l4.004 4.004 4.004-4.004L4.004 8.008zm16.016 0l-4.004 4.004 4.004 4.004 4.004-4.004-4.004-4.004z" />
+    </svg>
+);
+
 // PayPal Icon
 const PaypalIcon = ({ size = 24, className = "" }: { size?: number | string, className?: string }) => (
     <svg
@@ -234,7 +262,9 @@ const Contact: React.FC = () => {
                             { icon: BandcampIcon, href: "https://leniwsek.bandcamp.com", label: "Bandcamp" },
                             { icon: SoundCloudIcon, href: "https://soundcloud.com/leniwsek", label: "SoundCloud" },
                             { icon: SpotifyIcon, href: "https://open.spotify.com/artist/3CZcBvEHgbcm347Jxii9Pn", label: "Spotify" },
-                            { icon: AppleIcon, href: "https://music.apple.com/us/artist/leniwsek/1858297709", label: "Apple Music", size: 32 }
+                            { icon: AppleIcon, href: "https://music.apple.com/us/artist/leniwsek/1858297709", label: "Apple Music", size: 32 },
+                            { icon: AmazonIcon, href: "https://music.amazon.com/artists/B0G4XP2TXG/leniwsek", label: "Amazon" },
+                            { icon: TidalIcon, href: "https://tidal.com/artist/70717901", label: "Tidal" }
                         ].map((social, idx) => (
                             <a
                                 key={idx}
